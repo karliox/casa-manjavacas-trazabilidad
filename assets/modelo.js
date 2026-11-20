@@ -24,6 +24,16 @@ window.MODELO = {
     { id: "M4", nombre: "Un cliente de alta gama dentro", que: "Un restaurante o tienda gourmet fijo que paga 5 €/kg más desde el Año 8.", reciben: 79555, veces: 2.65, tir: 11.8, recuperan: 10 },
     { id: "M5", nombre: "Bueyes de otros criadores", que: "Vender 3 bueyes al año de otros criadores con la marca. Supuesto sin ningún criador confirmado.", reciben: 97661, veces: 3.26, tir: 14.1, recuperan: 10 }
   ],
+  // Referencias de precio de mercado (consultadas en noviembre de 2026).
+  mercado: [
+    { etiqueta: "Canal de vacuno en Galicia (precio medio)", valor: 8.05, tipo: "canal", fuente: "Fundación Juana de Vega, vía El Español (abril de 2026)", url: "https://www.elespanol.com/quincemil/economia/20260414/precio-carne-vacuno-dispara-coruna-gente-aldeas-no-quiere-criar/1003744204901_0.html" },
+    { etiqueta: "Casa Manjavacas: precio del plan por kg de canal", valor: 55, tipo: "plan" },
+    { etiqueta: "Casa Manjavacas: lo mismo por kg de carne vendida", valor: 82, tipo: "plan", nota: "55 €/kg × 493 kg de canal ÷ 330,5 kg de carne (ratio del modelo)" },
+    { etiqueta: "Chuletón de vaca Rubia Gallega, +60 días, tienda online", valor: 54.95, tipo: "pieza", fuente: "buenacarne.es", url: "https://buenacarne.es/products/vaca-rubia-gallega-60-dias-dry-aged" },
+    { etiqueta: "Chuletón de buey de verdad (ganadería Torrestrella, 2021)", valor: 70, tipo: "pieza", masDe: true, fuente: "Directo al Paladar", url: "https://www.directoalpaladar.com/actualidad-1/a-veces-se-puede-comprar-chuleton-buey-verdad-cuesta-70-euros-kilo-como-estos-ganaderia-torrestrella" },
+    { etiqueta: "Chuletón de Rubia Gallega en carnicería de Bélgica", valor: 97.5, tipo: "pieza", fuente: "Dierendonck", url: "https://www.dierendonck.be/en/products/rubia" },
+    { etiqueta: "Chuleta de buey en restaurante de Madrid (Taberna Pedraza)", valor: 169, tipo: "restaurante", fuente: "El Español (mayo de 2026)", url: "https://www.elespanol.com/cocinillas/actualidad-gastronomica/20260512/exclusiva-chuleta-buey-taberna-pedraza-kilo-especial-anos-llevamos-abiertos/1003744238433_0.html" }
+  ],
   club: { plazas: 6, cuota: 2500, kgCarneAnio: 120, desdeAnio: 5, hastaAnio: 9 },
   aportacion: { tramo1: 5000, anioTramo1: 3, tramo2: 25000, anioTramo2: 4, total: 30000 },
   participacion: { hastaRecuperar: 0.23, despues: 0.10, hastaAnio: 15 },

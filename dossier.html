@@ -112,6 +112,16 @@ ul{margin:4px 0 8px;padding-left:16px}li{margin:3px 0}
 </section>
 
 <section class="hoja">
+  <h2>¿Es realista vender a 55 €/kg?</h2>
+  <p class="lead">El precio del plan es por kilo de canal, que incluye hueso y cortes de menos valor. Pasado a carne vendida son unos 82 €/kg: el precio del buey de verdad en el mercado gourmet, muy por encima de la carne de vacuno corriente.</p>
+  <table id="merc"></table>
+  <p style="font-size:8.5pt;color:#7a6b5d;margin-top:6px">Referencias públicas consultadas en noviembre de 2026. Los precios de pieza son de cortes nobles con hueso, no de un animal entero. Por eso la primera medida del plan es demostrar el precio con preventa y club antes de crecer.</p>
+  <h3 style="margin-top:14px">Fuentes</h3>
+  <ul id="fuentes" style="font-size:8.5pt;color:#5a4d42"></ul>
+  <div class="pie"><span>Casa Manjavacas · Dossier para inversores</span><span>5</span></div>
+</section>
+
+<section class="hoja">
   <h2>Qué puede fallar y qué se hace</h2>
   <div class="dos">
     <div class="caja"><h3>El precio no está confirmado</h3><p class="r">Es lo que más mueve el resultado. A precio de lonja los inversores no recuperarían lo aportado.</p><p class="m">Preventa y club antes de comprometer más dinero. El contrato solo permite comprar vacas si en el Año 7 el precio llega a 24 €/kg.</p></div>
@@ -123,7 +133,7 @@ ul{margin:4px 0 8px;padding-left:16px}li{margin:3px 0}
   <div class="ruta" id="ruta"></div>
   <h3 style="margin-top:16px">Aviso</h3>
   <p style="font-size:9pt;color:#5a4d42">Todas las cifras son previsiones del modelo económico del promotor (Plan actual, escenario Base salvo indicación), no resultados: ningún precio de venta está confirmado. Este documento no es una oferta de inversión; las condiciones son las del contrato. IRPF y fiscalidad, a confirmar con asesor.</p>
-  <div class="pie"><span>Casa Manjavacas · karliox.github.io/casa-manjavacas-trazabilidad</span><span>5</span></div>
+  <div class="pie"><span>Casa Manjavacas · karliox.github.io/casa-manjavacas-trazabilidad</span><span>6</span></div>
 </section>
 
 <script src="assets/paisaje.js"></script>
@@ -171,6 +181,8 @@ ul{margin:4px 0 8px;padding-left:16px}li{margin:3px 0}
     .map(([k, f]) => `<tr><td>${k}</td>${E.map(e => `<td>${f(e)}</td>`).join("")}</tr>`).join("");
   document.getElementById("med").innerHTML = `<tr><th>Medida</th><th>Cobran</th><th>Veces</th><th>TIR</th></tr><tr><td>Plan actual (Base)</td><td>${eur(69545)}</td><td>2,3</td><td>10,0 %</td></tr>` +
     M.medidas.map(m => `<tr><td>${m.nombre}</td><td>${eur(m.reciben)}</td><td>${m.veces.toLocaleString("es-ES", { maximumFractionDigits: 1 })}</td><td>${m.tir.toLocaleString("es-ES", { minimumFractionDigits: 1 })} %</td></tr>`).join("");
+  document.getElementById("merc").innerHTML = `<tr><th>Referencia</th><th>€/kg</th></tr>` + M.mercado.map(r => `<tr><td>${r.tipo === "plan" ? "<strong>" + r.etiqueta + "</strong>" : r.etiqueta}${r.nota ? `<br><span style="color:#7a6b5d;font-size:8pt">${r.nota}</span>` : ""}</td><td>${r.masDe ? "Más de " : ""}${r.valor.toLocaleString("es-ES")} €</td></tr>`).join("");
+  document.getElementById("fuentes").innerHTML = M.mercado.filter(r => r.url).map(r => `<li>${r.fuente}: ${r.url}</li>`).join("");
   document.getElementById("ruta").innerHTML = M.hitos.map(h => `<div class="${/nversor/.test(h.titulo) ? "inv" : ""}"><b>${an(h.anio)}</b><strong>${h.titulo}</strong><br>${h.texto}</div>`).join("");
 }
 </script>

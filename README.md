@@ -8,6 +8,8 @@ Demo de un sistema de trazabilidad para buey de ceba extensiva (Rubia Gallega) e
 
 - `index.html` — Página de marca Casa Manjavacas.
 - `inversores.html` — Sala de inversores con las cifras del modelo económico (Plan actual), simulador y escenarios.
+- `presentacion.html` — Modo presentación para la reunión (flechas del teclado o deslizar en el móvil).
+- `Casa_Manjavacas_Dossier_Inversores.pdf` — Dossier de 6 páginas (se genera desde `dossier.html`).
 - `panel.html` — Panel del ganadero: indicadores, lista de animales y QR de cada uno.
 - `ficha.html?id=CM-001` — Página pública a la que lleva el QR del producto: la historia de ese buey.
 - `registrar.html` — Formulario para apuntar eventos desde el móvil. En la demo se guardan solo en el navegador.
