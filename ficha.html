@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>La historia de tu buey — Casa Manjavacas</title>
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+<div class="demo">DEMO · Animal y datos ficticios de ejemplo</div>
+<section class="hero">
+  <span class="marca">Casa Manjavacas<small>Buey de ceba extensiva · Montaña Palentina</small></span>
+  <h1 id="titulo">—</h1>
+  <p id="lema"></p>
+</section>
+<main>
+  <div class="datos" id="datos"></div>
+  <h2>Su historia</h2>
+  <ul class="timeline" id="historia"></ul>
+  <div id="bloque-cortes"></div>
+  <p class="nota">Ficha de trazabilidad de Casa Manjavacas. Complementa la trazabilidad oficial del animal.
+    <a href="index.html">Volver al panel</a></p>
+</main>
+<script src="data/bueyes.js"></script>
+<script src="assets/app.js"></script>
+<script>
+  const id = new URLSearchParams(location.search).get("id");
+  const b = CM.bueyes().find(x => x.id === id);
+  if (!b) {
+    document.getElementById("titulo").textContent = "Ficha no encontrada";
+    document.getElementById("lema").textContent = "Revisa el código QR o el enlace.";
+  } else {
+    document.title = b.nombre + " — Casa Manjavacas";
+    document.getElementById("titulo").textContent = b.nombre;
+    document.getElementById("lema").textContent = `${b.raza} · ${b.id} · ${CM.ESTADOS[b.estado]}`;
+    const datos = [
+      ["Raza", b.raza],
+      ["Nacimiento", CM.fmt(b.nacimiento)],
+      ["Meses criándose en la montaña", CM.meses(b.entrada, b.sacrificio)],
+      ["Dónde", b.finca]
+    ];
+    if (b.sacrificio) datos.push(["Sacrificio", CM.fmt(b.sacrificio)]);
+    if (b.pesoCanal) datos.push(["Peso de la canal", b.pesoCanal + " kg"]);
+    if (b.diasMaduracion) datos.push(["Maduración", b.diasMaduracion + " días"]);
+    if (!b.sacrificio && b.pesoVivo) datos.push(["Último pesaje", b.pesoVivo.toLocaleString("es-ES") + " kg"]);
+    document.getElementById("datos").innerHTML = datos.map(([k, v]) =>
+      `<div class="dato"><span>${CM.esc(k)}</span><b>${CM.esc(v)}</b></div>`).join("");
+    document.getElementById("historia").innerHTML = b.eventos.map(e =>
+      `<li><time>${CM.fmt(e.fecha)} · ${CM.TIPOS[e.tipo] || "Evento"}</time>${CM.esc(e.texto)}</li>`).join("");
+    if (b.cortes && b.cortes.length) {
+      document.getElementById("bloque-cortes").innerHTML =
+        `<h2>Cortes de este buey</h2><div class="cortes">${b.cortes.map(c => `<span>${CM.esc(c)}</span>`).join("")}</div>`;
+    }
+  }
+</script>
+</body>
+</html>

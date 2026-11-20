@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Panel de trazabilidad — Casa Manjavacas</title>
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+<div class="demo">DEMO · Animales y datos ficticios de ejemplo</div>
+<header class="top">
+  <a class="marca" href="index.html">Casa Manjavacas<small>Buey de ceba extensiva · Montaña Palentina</small></a>
+  <nav><a class="activo" href="index.html">Panel</a><a href="registrar.html">Registrar evento</a></nav>
+</header>
+<main>
+  <h1>Panel de trazabilidad</h1>
+  <p class="sub">Cada buey, desde que entra en la explotación hasta la pieza madurada que llega al cliente.</p>
+  <div class="kpis" id="kpis"></div>
+  <h2>Animales</h2>
+  <table class="tabla">
+    <thead><tr><th>ID</th><th>Nombre</th><th class="ocultar">Raza</th><th class="ocultar">Meses en la explotación</th><th>Estado</th><th></th></tr></thead>
+    <tbody id="filas"></tbody>
+  </table>
+  <p class="nota">Esta herramienta complementa la trazabilidad oficial obligatoria (identificación, documento de identificación bovina y registro en SITRAN); no la sustituye.</p>
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="caja">
+    <h3 id="m-titulo"></h3>
+    <div id="m-qr"></div>
+    <p class="url" id="m-url"></p>
+    <button class="btn sec" id="m-cerrar">Cerrar</button>
+  </div>
+</div>
+
+<script src="assets/qrcode.js"></script>
+<script src="data/bueyes.js"></script>
+<script src="assets/app.js"></script>
+<script>
+  const lista = CM.bueyes();
+  const n = e => lista.filter(b => b.estado === e).length;
+  const kgCanal = lista.filter(b => b.pesoCanal).reduce((s, b) => s + b.pesoCanal, 0);
+  const vivos = lista.filter(b => b.estado === "ceba" || b.estado === "acabado");
+  const mediaMeses = vivos.length ? Math.round(vivos.reduce((s, b) => s + CM.meses(b.entrada), 0) / vivos.length) : 0;
+  document.getElementById("kpis").innerHTML = [
+    [vivos.length, "bueyes en la explotación"],
+    [n("maduracion"), "en cámara de maduración"],
+    [n("vendido"), "vendidos"],
+    [kgCanal.toLocaleString("es-ES") + " kg", "de canal producidos"],
+    [mediaMeses + " meses", "de media en pasto (animales vivos)"]
+  ].map(([v, t]) => `<div class="kpi"><b>${v}</b><span>${t}</span></div>`).join("");
+
+  document.getElementById("filas").innerHTML = lista.map(b => `
+    <tr>
+      <td>${CM.esc(b.id)}</td>
+      <td>${CM.esc(b.nombre)}</td>
+      <td class="ocultar">${CM.esc(b.raza)}</td>
+      <td class="ocultar">${CM.meses(b.entrada, b.sacrificio)}</td>
+      <td><span class="estado e-${b.estado}">${CM.ESTADOS[b.estado]}</span></td>
+      <td class="acciones"><a class="btn sec" href="ficha.html?id=${encodeURIComponent(b.id)}">Ficha</a><button class="btn" data-qr="${CM.esc(b.id)}">QR</button></td>
+    </tr>`).join("");
+
+  const modal = document.getElementById("modal");
+  document.addEventListener("click", e => {
+    const id = e.target.getAttribute && e.target.getAttribute("data-qr");
+    if (id) {
+      const url = CM.urlFicha(id);
+      const b = lista.find(x => x.id === id);
+      document.getElementById("m-titulo").textContent = b.id + " · " + b.nombre;
+      document.getElementById("m-qr").innerHTML = CM.qrSVG(url);
+      document.getElementById("m-url").textContent = url;
+      modal.classList.add("abierto");
+    }
+    if (e.target.id === "m-cerrar" || e.target === modal) modal.classList.remove("abierto");
+  });
+</script>
+</body>
+</html>
