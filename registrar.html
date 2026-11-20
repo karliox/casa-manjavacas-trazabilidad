@@ -9,8 +9,8 @@
 <body>
 <div class="demo">DEMO · Los eventos se guardan solo en este navegador</div>
 <header class="top">
-  <a class="marca" href="index.html">Casa Manjavacas<small>Buey de ceba extensiva · Montaña Palentina</small></a>
-  <nav><a href="index.html">Panel</a><a class="activo" href="registrar.html">Registrar evento</a></nav>
+  <a class="marca" href="index.html">Casa Manjavacas<small>Panel del ganadero</small></a>
+  <nav><a href="index.html">Inicio</a><a href="panel.html">Panel</a><a class="activo" href="registrar.html">Registrar evento</a><a href="inversores.html">Inversores</a></nav>
 </header>
 <main>
   <h1>Registrar evento</h1>
@@ -34,7 +34,7 @@
   const sel = document.getElementById("id");
   sel.innerHTML = CM.bueyes().map(b => `<option value="${CM.esc(b.id)}">${CM.esc(b.id)} · ${CM.esc(b.nombre)}</option>`).join("");
   document.getElementById("tipo").innerHTML = Object.entries(CM.TIPOS).map(([k, v]) => `<option value="${k}">${v}</option>`).join("");
-  document.getElementById("fecha").value = new Date().toISOString().slice(0, 10);
+  document.getElementById("fecha").value = (window.FECHA_DEMO || new Date().toISOString().slice(0, 10));
   document.getElementById("form").addEventListener("submit", e => {
     e.preventDefault();
     const ev = {

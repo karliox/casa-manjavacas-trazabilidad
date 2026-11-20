@@ -2,11 +2,13 @@
 
 Demo de un sistema de trazabilidad para buey de ceba extensiva (Rubia Gallega) en la Montaña Palentina.
 
-**Los animales y datos de esta demo son ficticios.**
+**Los animales de esta demo son ficticios (simulación de junio de 2033). Las cifras de inversores vienen del modelo económico y son previsiones, no resultados.**
 
 ## Qué incluye
 
-- `index.html` — Panel del ganadero: indicadores, lista de animales y QR de cada uno.
+- `index.html` — Página de marca Casa Manjavacas.
+- `inversores.html` — Sala de inversores con las cifras del modelo económico (Plan actual), simulador y escenarios.
+- `panel.html` — Panel del ganadero: indicadores, lista de animales y QR de cada uno.
 - `ficha.html?id=CM-001` — Página pública a la que lleva el QR del producto: la historia de ese buey.
 - `registrar.html` — Formulario para apuntar eventos desde el móvil. En la demo se guardan solo en el navegador.
 - `data/bueyes.js` — Los datos de los animales. Aquí se cambian por los reales.

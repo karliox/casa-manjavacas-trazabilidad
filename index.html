@@ -3,76 +3,136 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Panel de trazabilidad — Casa Manjavacas</title>
-<link rel="stylesheet" href="assets/estilo.css">
+<title>Casa Manjavacas · Buey de la Montaña Palentina</title>
+<meta name="description" content="Buey de ceba extensiva de raza Rubia Gallega, criado cinco años en la Montaña Palentina. Cada pieza con su historia.">
+<link rel="stylesheet" href="assets/marca.css">
 </head>
 <body>
-<div class="demo">DEMO · Animales y datos ficticios de ejemplo</div>
-<header class="top">
-  <a class="marca" href="index.html">Casa Manjavacas<small>Buey de ceba extensiva · Montaña Palentina</small></a>
-  <nav><a class="activo" href="index.html">Panel</a><a href="registrar.html">Registrar evento</a></nav>
+<div class="aviso">Proyecto en desarrollo · Demostración con datos de ejemplo</div>
+<header class="nav">
+  <a class="logo" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="#d4a85a" stroke-width="1.5"/><path d="M7 15c3 4 7 5 13 5s10-1 13-5" fill="none" stroke="#d4a85a" stroke-width="1.8" stroke-linecap="round"/><path d="M9 30l7-9 4 4 4-6 7 11z" fill="#d4a85a"/></svg>Casa Manjavacas</a>
+  <nav>
+    <a href="#proceso">El buey</a>
+    <a href="#trazabilidad">Trazabilidad</a>
+    <a href="#club">Club</a>
+    <a href="panel.html">Panel</a>
+    <a class="cta" href="inversores.html">Inversores</a>
+  </nav>
 </header>
-<main>
-  <h1>Panel de trazabilidad</h1>
-  <p class="sub">Cada buey, desde que entra en la explotación hasta la pieza madurada que llega al cliente.</p>
-  <div class="kpis" id="kpis"></div>
-  <h2>Animales</h2>
-  <table class="tabla">
-    <thead><tr><th>ID</th><th>Nombre</th><th class="ocultar">Raza</th><th class="ocultar">Meses en la explotación</th><th>Estado</th><th></th></tr></thead>
-    <tbody id="filas"></tbody>
-  </table>
-  <p class="nota">Esta herramienta complementa la trazabilidad oficial obligatoria (identificación, documento de identificación bovina y registro en SITRAN); no la sustituye.</p>
-</main>
 
-<div class="modal" id="modal" role="dialog" aria-modal="true">
-  <div class="caja">
-    <h3 id="m-titulo"></h3>
-    <div id="m-qr"></div>
-    <p class="url" id="m-url"></p>
-    <button class="btn sec" id="m-cerrar">Cerrar</button>
+<section class="hero">
+  <div id="paisaje-hero"></div>
+  <div class="texto">
+    <h1>Cinco años en la montaña. Un buey en tu mesa.</h1>
+    <p class="lead">Buey de ceba extensiva de raza Rubia Gallega, criado en libertad en la Montaña Palentina y madurado en seco. Pocos animales al año, cada uno con nombre e historia.</p>
+    <div class="botones">
+      <a class="btn" href="ficha.html?id=CM-001">Conoce a Lucero</a>
+      <a class="btn sec" href="#proceso">Cómo se cría</a>
+    </div>
   </div>
-</div>
+</section>
+
+<section class="band">
+  <div class="in">
+    <div class="cifras" id="cifras"></div>
+    <p class="nota" style="margin-top:12px">Cifras por buey según el plan de negocio de Casa Manjavacas.</p>
+  </div>
+</section>
+
+<section class="band" id="proceso" style="padding-top:0">
+  <div class="in">
+    <h2>Del monte a la mesa, sin atajos</h2>
+    <p class="lead">Un buey de supermercado vive menos de dos años. Uno de Casa Manjavacas pasa unos cinco en la explotación, casi todos al aire libre.</p>
+    <div class="proceso" id="pasos"></div>
+  </div>
+</section>
+
+<section class="band" id="trazabilidad" style="background:var(--noche2)">
+  <div class="in duo">
+    <div>
+      <h2>Cada pieza lleva su historia</h2>
+      <p class="lead">La etiqueta trae un código QR. El cliente lo escanea y ve a su buey: cuándo llegó, cuántos años pastó, cuándo se sacrificó y cuántos días maduró.</p>
+      <div class="qrcaja">
+        <div class="qr" id="qr-lucero"></div>
+        <p><strong style="color:var(--crema)">Pruébalo ahora.</strong> Escanea este código con la cámara del móvil y abre la ficha de Lucero, un buey de ejemplo.</p>
+      </div>
+      <div class="botones"><a class="btn sec" href="panel.html">Ver el panel del ganadero</a></div>
+    </div>
+    <div class="movil" aria-hidden="true">
+      <div class="pantalla">
+        <div class="mini-hero"><small>CASA MANJAVACAS</small><b>Lucero</b><span style="font-size:12px;color:#e8d8c4">Rubia Gallega · CM-001</span></div>
+        <div class="mini-datos">
+          <div>En la montaña<b>61 meses</b></div>
+          <div>Maduración<b>60 días</b></div>
+          <div>Canal<b>497 kg</b></div>
+          <div>Origen<b>Palencia</b></div>
+        </div>
+        <div class="mini-linea">
+          <p>Oct 2027 · Llega con 7 meses</p>
+          <p>May 2028 · Sube a los pastos de verano</p>
+          <p>Oct 2031 · Empieza el engorde final</p>
+          <p>Dic 2032 · Sale de cámara</p>
+        </div>
+        <div class="mini-linea" style="margin-top:auto;padding-bottom:18px"><b style="font-family:var(--serif);font-weight:400;font-size:15px;color:#14110f">Chuletón · madurado 60 días</b><br>Brasa fuerte, 4-5 min por cara, sal gorda al final.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="club">
+  <div class="in club">
+    <div>
+      <h2>Club de clientes fundadores</h2>
+      <p class="lead">Los primeros clientes entran en el club desde el segundo año y reciben carne de los primeros bueyes de la casa. Pocas plazas, porque hay pocos animales.</p>
+      <div class="botones"><a class="btn" href="inversores.html">Ver el proyecto completo</a></div>
+    </div>
+    <div class="etiqueta">
+      <div class="marca">Casa Manjavacas</div>
+      <dl>
+        <dt>Buey</dt><dd>Lucero · CM-001</dd>
+        <dt>Raza</dt><dd>Rubia Gallega</dd>
+        <dt>Crianza</dt><dd>Extensiva, Montaña Palentina</dd>
+        <dt>Pieza</dt><dd>Chuletón</dd>
+        <dt>Maduración</dt><dd>60 días</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="in">
+    <span>Casa Manjavacas · Montaña Palentina</span>
+    <span>Demostración: los animales y fechas son ejemplos. La trazabilidad oficial obligatoria (crotales, DIB y SITRAN) se mantiene aparte.</span>
+  </div>
+</footer>
 
 <script src="assets/qrcode.js"></script>
+<script src="assets/paisaje.js"></script>
 <script src="data/bueyes.js"></script>
 <script src="assets/app.js"></script>
 <script>
-  const lista = CM.bueyes();
-  const n = e => lista.filter(b => b.estado === e).length;
-  const kgCanal = lista.filter(b => b.pesoCanal).reduce((s, b) => s + b.pesoCanal, 0);
-  const vivos = lista.filter(b => b.estado === "ceba" || b.estado === "acabado");
-  const mediaMeses = vivos.length ? Math.round(vivos.reduce((s, b) => s + CM.meses(b.entrada), 0) / vivos.length) : 0;
-  document.getElementById("kpis").innerHTML = [
-    [vivos.length, "bueyes en la explotación"],
-    [n("maduracion"), "en cámara de maduración"],
-    [n("vendido"), "vendidos"],
-    [kgCanal.toLocaleString("es-ES") + " kg", "de canal producidos"],
-    [mediaMeses + " meses", "de media en pasto (animales vivos)"]
-  ].map(([v, t]) => `<div class="kpi"><b>${v}</b><span>${t}</span></div>`).join("");
+{
+  document.getElementById("paisaje-hero").outerHTML = paisajeSVG();
+  const cifras = [
+    ["≈5 años", "en la explotación, desde ternero"],
+    ["493 kg", "de canal por buey"],
+    ["1,5 ha", "de pasto por animal"],
+    ["≈5", "bueyes al año, nada más"]
+  ];
+  document.getElementById("cifras").innerHTML = cifras.map(([v, t]) => `<div class="cifra"><b>${v}</b><span>${t}</span></div>`).join("");
 
-  document.getElementById("filas").innerHTML = lista.map(b => `
-    <tr>
-      <td>${CM.esc(b.id)}</td>
-      <td>${CM.esc(b.nombre)}</td>
-      <td class="ocultar">${CM.esc(b.raza)}</td>
-      <td class="ocultar">${CM.meses(b.entrada, b.sacrificio)}</td>
-      <td><span class="estado e-${b.estado}">${CM.ESTADOS[b.estado]}</span></td>
-      <td class="acciones"><a class="btn sec" href="ficha.html?id=${encodeURIComponent(b.id)}">Ficha</a><button class="btn" data-qr="${CM.esc(b.id)}">QR</button></td>
-    </tr>`).join("");
+  const iconos = [
+    '<circle cx="32" cy="32" r="30" fill="none" stroke="#d4a85a" stroke-width="1.5"/><path d="M18 38c2-6 8-8 14-8h8c4 0 7 2 8 5l-2 6h-3l-1 5h-3l-1-5H28l-1 5h-3l-1-6c-3-1-5-1-5-2z" fill="#d4a85a"/>',
+    '<circle cx="32" cy="32" r="30" fill="none" stroke="#d4a85a" stroke-width="1.5"/><path d="M12 44l12-16 7 8 6-10 15 18z" fill="#6f8b4f"/><path d="M37 26l3 5-3-1-3 2z" fill="#f3eadb"/>',
+    '<circle cx="32" cy="32" r="30" fill="none" stroke="#d4a85a" stroke-width="1.5"/><path d="M32 16v22M24 24c0 6 3 10 8 12M40 24c0 6-3 10-8 12M27 18c0 4 2 7 5 8M37 18c0 4-2 7-5 8" stroke="#d4a85a" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M20 44h24" stroke="#d4a85a" stroke-width="2"/>',
+    '<circle cx="32" cy="32" r="30" fill="none" stroke="#d4a85a" stroke-width="1.5"/><rect x="20" y="16" width="24" height="32" rx="3" fill="none" stroke="#d4a85a" stroke-width="2"/><path d="M24 24h16M24 30h16M24 36h10" stroke="#c2412d" stroke-width="2"/><circle cx="40" cy="42" r="2" fill="#d4a85a"/>',
+    '<circle cx="32" cy="32" r="30" fill="none" stroke="#d4a85a" stroke-width="1.5"/><ellipse cx="32" cy="36" rx="16" ry="9" fill="#c2412d"/><ellipse cx="28" cy="34" rx="5" ry="3" fill="#f3eadb" opacity=".7"/><path d="M14 46h36" stroke="#d4a85a" stroke-width="2"/>'
+  ];
+  document.getElementById("pasos").innerHTML = CM.ETAPAS.map((e, i) =>
+    `<div class="paso"><svg viewBox="0 0 64 64" aria-hidden="true">${iconos[i]}</svg><h3>${e.nombre}</h3><p>${e.detalle}</p></div>`).join("");
 
-  const modal = document.getElementById("modal");
-  document.addEventListener("click", e => {
-    const id = e.target.getAttribute && e.target.getAttribute("data-qr");
-    if (id) {
-      const url = CM.urlFicha(id);
-      const b = lista.find(x => x.id === id);
-      document.getElementById("m-titulo").textContent = b.id + " · " + b.nombre;
-      document.getElementById("m-qr").innerHTML = CM.qrSVG(url);
-      document.getElementById("m-url").textContent = url;
-      modal.classList.add("abierto");
-    }
-    if (e.target.id === "m-cerrar" || e.target === modal) modal.classList.remove("abierto");
-  });
+  document.getElementById("qr-lucero").innerHTML = CM.qrSVG(CM.urlFicha("CM-001"), "#14110f");
+}
 </script>
 </body>
 </html>
