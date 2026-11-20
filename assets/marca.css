@@ -85,6 +85,15 @@ h1{font-size:clamp(38px,5.6vw,72px)} h2{font-size:clamp(30px,3.6vw,46px)} h3{fon
 .etiqueta dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:14px 0 0}
 .etiqueta dt{color:#7a6a5d}.etiqueta dd{margin:0;font-weight:600}
 
+.plazas{display:flex;align-items:center;gap:14px;margin:18px 0 6px;color:var(--crema2);font-size:15px}
+.puntos{display:flex;gap:6px}.puntos i{width:18px;height:18px;border-radius:50%;border:2px solid var(--oro)}.puntos i.llena{background:var(--oro)}
+.reserva{margin-top:16px}
+.reserva .campos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.reserva label{display:block;font-size:14px;color:var(--crema2)}.reserva label span{color:var(--tenue)}
+.reserva .ancho{grid-column:1/-1}
+.reserva input,.reserva textarea{display:block;width:100%;margin-top:5px;padding:11px 12px;font:16px var(--sans);color:var(--crema);background:rgba(0,0,0,.25);border:1px solid rgba(243,234,219,.25);border-radius:10px}
+.reserva input:focus,.reserva textarea:focus{outline:2px solid var(--oro);outline-offset:1px}
+.estado-reserva{min-height:22px;margin:10px 0 0;color:var(--oro)}
 footer{border-top:1px solid var(--linea);padding:36px max(5vw,16px);color:var(--tenue);font-size:14px}
 footer .in{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between}
 
@@ -125,6 +134,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-betwe
   .proceso{grid-template-columns:1fr 1fr}
   .paso::after{display:none}
   .duo,.club,.dos{grid-template-columns:1fr}
+  .reserva .campos{grid-template-columns:1fr}
   .viaje{grid-template-columns:1fr;margin-left:16px;margin-right:16px}
   .etapa{border-right:0;border-bottom:1px solid var(--linea);display:grid;grid-template-columns:28px 1fr;align-items:start}
   .etapa .punto{margin:4px 0 0}

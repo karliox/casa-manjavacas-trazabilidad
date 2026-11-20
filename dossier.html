@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dossier para inversores · Casa Manjavacas</title>
+<style>
+/*
+VOICE: dossier impreso que se deja sobre la mesa tras la reunión.
+IDEA: cinco hojas A4, una idea por hoja.
+PICTURE: portada con el paisaje de la Montaña Palentina; dentro, gráficos de las cifras del modelo.
+COLOUR and TYPE: papel crema y tinta noche, rojo brasa y oro; Fraunces + Inter.
+LAYOUT: A4 vertical, márgenes generosos, cifras grandes arriba de cada hoja.
+*/
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap");
+@page{size:A4;margin:0}
+*{box-sizing:border-box}
+body{margin:0;font:10.5pt/1.5 "Inter",system-ui,sans-serif;color:#1d1814;background:#ddd}
+.hoja{width:210mm;height:297mm;padding:18mm 17mm 16mm;background:#f8f3ea;position:relative;overflow:hidden;page-break-after:always;margin:0 auto 10mm}
+.hoja:last-child{page-break-after:auto}
+h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:400;line-height:1.1;margin:0 0 8px}
+h1{font-size:40pt}h2{font-size:24pt;margin-bottom:6px}h3{font-size:13pt;margin-top:14px}
+p{margin:0 0 8px}.lead{font-size:12pt;color:#4f443a}
+.pie{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font-size:8pt;color:#7a6b5d;border-top:1px solid #e2d6c4;padding-top:5px}
+.portada{background:#14110f;color:#f3eadb;padding:0}
+.portada svg.paisaje{position:absolute;inset:0;width:100%;height:100%}
+.portada .t{position:relative;padding:28mm 18mm}
+.portada .marca{font-family:"Fraunces",Georgia,serif;font-size:14pt;color:#d4a85a;letter-spacing:.04em}
+.portada h1{margin-top:12mm;font-size:46pt;max-width:150mm}
+.portada .lead{color:#e8d8c4;max-width:140mm}
+.portada .pie{color:#cdbda6;border-top-color:rgba(243,234,219,.25)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.kpi{background:#fffaf2;border:1px solid #e2d6c4;border-radius:10px;padding:10px 12px}
+.kpi b{display:block;font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:21pt;line-height:1.05;white-space:nowrap}
+.kpi span{font-size:9pt;color:#5a4d42}
+.kpi.d{background:#1d1814;color:#f3eadb}.kpi.d b{color:#d4a85a}.kpi.d span{color:#cdbda6}
+.fig{background:#fffaf2;border:1px solid #e2d6c4;border-radius:10px;padding:8px;margin:6px 0 4px}
+.fig svg{width:100%;height:auto;display:block}
+.ley{font-size:8.5pt;color:#5a4d42;margin-bottom:10px}.ley i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 12px;vertical-align:-1px}
+table{width:100%;border-collapse:collapse;font-size:9.5pt;margin-top:6px}
+th,td{padding:3.5px 6px;border-bottom:1px solid #e2d6c4;text-align:right}
+th:first-child,td:first-child{text-align:left}th{font-weight:500;color:#5a4d42;font-size:8.5pt}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.caja{background:#fffaf2;border:1px solid #e2d6c4;border-radius:10px;padding:10px 12px;font-size:9.5pt}
+.caja h3{margin:0 0 4px;font-size:12pt}.caja .r{color:#9e3222}.caja .m{border-top:1px dashed #e2d6c4;padding-top:4px;margin:4px 0 0}
+.ruta{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:6px}
+.ruta div{background:#fffaf2;border:1px solid #e2d6c4;border-top:3px solid #d4a85a;border-radius:8px;padding:7px 8px;font-size:8.5pt}
+.ruta div.inv{border-top-color:#c2412d}.ruta b{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:13pt;display:block}
+ul{margin:4px 0 8px;padding-left:16px}li{margin:3px 0}
+@media screen{body{padding:10mm 0}}
+@media print{body{background:none}.hoja{margin:0}}
+</style>
+</head>
+<body>
+
+<section class="hoja portada">
+  <div id="paisaje"></div>
+  <div class="t">
+    <div class="marca">CASA MANJAVACAS</div>
+    <h1>Buey de la Montaña Palentina</h1>
+    <p class="lead">Dossier para inversores. Buey de ceba extensiva de raza Rubia Gallega, cinco años en la montaña y madurado en seco. Unos cinco bueyes al año, cada uno con su ficha de trazabilidad.</p>
+  </div>
+  <div class="pie"><span>Carlos Espeso Manjavacas · Promotor</span><span>Previsiones del modelo económico · noviembre de 2026</span></div>
+</section>
+
+<section class="hoja">
+  <h2>La propuesta</h2>
+  <p class="lead">30.000 € en dos tramos (2030 y 2031) a cambio de un porcentaje del resultado: un 23 % hasta recuperar lo aportado y un 10 % después, hasta el Año 15. Sin devolución final: se recupera con los pagos.</p>
+  <div class="kpis" id="kpis"></div>
+  <h3>El negocio</h3>
+  <ul>
+    <li>Terneros de Rubia Gallega que pasan unos cuatro años en pasto extensivo y un año de engorde final. Unos 493 kg de canal por buey.</li>
+    <li>Venta directa como producto gourmet, con el precio subiendo por escalones hasta 55 €/kg canal en el Año 11.</li>
+    <li>Club de seis clientes fundadores (cuota de 2.500 €) y cámara de maduración propia desde el Año 8.</li>
+    <li>Cada pieza con código QR y ficha del animal: el argumento que sostiene el precio.</li>
+  </ul>
+  <h3>El promotor</h3>
+  <p><strong>Carlos Espeso Manjavacas.</strong> Ingeniería de las Industrias Agrarias y Alimentarias en la Universidad de Valladolid (ETSIIAA, campus de Palencia), con el Trabajo Fin de Grado orientado a la industria cárnica. Coordina un equipo de entrenadores en una escuela deportiva de Valladolid. Ha construido el plan con un modelo económico completo a 15 años, con escenarios de riesgo y sensibilidad.</p>
+  <h3>Lo próximo, antes de arrancar</h3>
+  <ul>
+    <li>Demostrar el precio con preventa y el club de clientes fundadores.</li>
+    <li>Cerrar la ayuda de joven agricultor y el Plan de Mejora.</li>
+    <li>Presupuestos firmados de instalaciones, vallado y cámara.</li>
+    <li>Un cliente de alta gama fijo.</li>
+  </ul>
+  <div class="pie"><span>Casa Manjavacas · Dossier para inversores</span><span>2</span></div>
+</section>
+
+<section class="hoja">
+  <h2>El negocio, año a año</h2>
+  <p class="lead">Cinco años de inversión y crianza antes del primer buey propio. Desde el Año 11, un resultado de explotación por encima de 73.000 € al año.</p>
+  <div class="fig" id="g1"></div>
+  <div class="ley"><i style="background:#4f6b35"></i>Resultado de explotación<i style="background:#c2412d"></i>Año en pérdidas<i style="background:#d4a85a;height:3px"></i>Caja acumulada</div>
+  <h2 style="margin-top:12px">Lo que cobra el inversor</h2>
+  <p class="lead">Recupera lo aportado con el resultado del Año 10 (cobrado en junio de 2038) y termina con unos 69.500 €.</p>
+  <div class="fig" id="g2"></div>
+  <div class="ley"><i style="background:#c2412d"></i>Aportación<i style="background:#d4a85a"></i>Pago del año<i style="background:#1d1814;height:3px"></i>Cobrado acumulado</div>
+  <div class="pie"><span>Casa Manjavacas · Dossier para inversores</span><span>3</span></div>
+</section>
+
+<section class="hoja">
+  <h2>La cuenta de un buey</h2>
+  <p class="lead">Lo que deja cada buey vendido en el Año 11. Por debajo de 22,5 €/kg canal el negocio perdería dinero.</p>
+  <table id="cuenta"></table>
+  <h2 style="margin-top:16px">Si las cosas van peor</h2>
+  <table id="esc"></table>
+  <p style="font-size:8.5pt;color:#7a6b5d;margin-top:4px">Conservador: un 15 % menos de precio, inflación y bajas del 5 %, un 30 % más de marketing y la cámara en el Año 13. Riesgo: precio de lonja (21,3 €/kg) todos los años.</p>
+  <h2 style="margin-top:14px">Y si sale mejor</h2>
+  <table id="med"></table>
+  <p style="font-size:8.5pt;color:#7a6b5d;margin-top:4px">Medidas calculadas una a una con supuestos del promotor sin confirmar. La de otros criadores es la más incierta.</p>
+  <div class="pie"><span>Casa Manjavacas · Dossier para inversores</span><span>4</span></div>
+</section>
+
+<section class="hoja">
+  <h2>Qué puede fallar y qué se hace</h2>
+  <div class="dos">
+    <div class="caja"><h3>El precio no está confirmado</h3><p class="r">Es lo que más mueve el resultado. A precio de lonja los inversores no recuperarían lo aportado.</p><p class="m">Preventa y club antes de comprometer más dinero. El contrato solo permite comprar vacas si en el Año 7 el precio llega a 24 €/kg.</p></div>
+    <div class="caja"><h3>Ayuda de joven agricultor sin conceder</h3><p class="r">El plan cuenta con 70.000 € de la Junta de Castilla y León, con un 60 % de anticipo.</p><p class="m">No arrancar las inversiones grandes hasta tener la resolución.</p></div>
+    <div class="caja"><h3>Inversiones sin presupuesto cerrado</h3><p class="r">Instalaciones y vallado (51.300 €) y cámara (25.000 €) son estimaciones.</p><p class="m">Presupuestos firmados; el modelo calcula un 10 % menos en instalaciones.</p></div>
+    <div class="caja"><h3>Costes más altos o más bajas</h3><p class="r">Escenario Conservador: menos precio, más inflación, bajas y marketing.</p><p class="m">Aun así el negocio sale en positivo y los inversores cobran 1,3 veces lo aportado.</p></div>
+  </div>
+  <h2 style="margin-top:16px">Hoja de ruta</h2>
+  <div class="ruta" id="ruta"></div>
+  <h3 style="margin-top:16px">Aviso</h3>
+  <p style="font-size:9pt;color:#5a4d42">Todas las cifras son previsiones del modelo económico del promotor (Plan actual, escenario Base salvo indicación), no resultados: ningún precio de venta está confirmado. Este documento no es una oferta de inversión; las condiciones son las del contrato. IRPF y fiscalidad, a confirmar con asesor.</p>
+  <div class="pie"><span>Casa Manjavacas · karliox.github.io/casa-manjavacas-trazabilidad</span><span>5</span></div>
+</section>
+
+<script src="assets/paisaje.js"></script>
+<script src="assets/modelo.js"></script>
+<script>
+{
+  const M = MODELO;
+  const eur = n => Math.round(n).toLocaleString("es-ES", { useGrouping: "always" }) + " €";
+  const an = i => M.anioCero + i;
+  const fk = v => Math.abs(v) >= 1000 ? Math.round(v / 1000) + " k" : String(v);
+  document.getElementById("paisaje").outerHTML = paisajeSVG();
+  document.getElementById("kpis").innerHTML = [
+    ["30.000 €", "de aportación en dos tramos", ""], ["69.545 €", "cobrados hasta el Año 15", "d"], ["2,3 veces", "lo aportado", ""],
+    ["10,0 %", "de rentabilidad anual (TIR)", ""], ["2038", "lo aportado, de vuelta", ""], ["343.661 €", "de patrimonio del negocio en el Año 15", ""]
+  ].map(([v, t, c]) => `<div class="kpi ${c}"><b>${v}</b><span>${t}</span></div>`).join("");
+
+  function graf(id, n, min, max, paso, barras, linea, extra) {
+    const W = 700, H = 300, mL = 50, mR = 10, mT = 12, mB = 26, iw = W - mL - mR, ih = H - mT - mB;
+    const y = v => mT + (max - v) / (max - min) * ih, bw = iw / n, x = i => mL + i * bw;
+    let g = "";
+    for (let t = min; t <= max; t += paso) g += `<line x1="${mL}" x2="${W - mR}" y1="${y(t)}" y2="${y(t)}" stroke="${t === 0 ? "#1d1814" : "#e2d6c4"}"/><text x="${mL - 6}" y="${y(t) + 4}" text-anchor="end" font-size="11" fill="#7a6b5d">${fk(t)}</text>`;
+    for (let i = 0; i < n; i++) g += `<text x="${x(i) + bw / 2}" y="${H - 8}" text-anchor="middle" font-size="10.5" fill="#5a4d42">${an(i)}</text>`;
+    barras.forEach((v, i) => { if (v) g += `<rect x="${x(i) + bw * .18}" y="${y(Math.max(v, 0))}" width="${bw * .64}" height="${Math.max(Math.abs(y(v) - y(0)), 1)}" rx="2" fill="${v < 0 ? "#c2412d" : extra.color}"/>`; });
+    if (linea) g += `<polyline fill="none" stroke="${extra.lc}" stroke-width="2.5" points="${linea.map((v, i) => v == null ? "" : `${x(i) + bw / 2},${y(v)}`).join(" ")}"/>`;
+    g += extra.anot ? extra.anot(x, y, bw) : "";
+    document.getElementById(id).innerHTML = `<svg viewBox="0 0 ${W} ${H}">${g}</svg>`;
+  }
+  graf("g1", 16, -40000, 280000, 40000, M.resultado, M.caja, { color: "#4f6b35", lc: "#d4a85a",
+    anot: (x, y, bw) => `<text x="${x(15) + bw / 2 - 6}" y="${y(M.caja[15]) - 8}" text-anchor="end" font-size="12">Caja ${an(15)}: ${eur(M.caja[15])}</text>` });
+  const fl = Array(17).fill(0), ac = Array(17).fill(null);
+  fl[3] = -5000; fl[4] = -25000; M.pagoInversores.forEach((p, i) => { if (p) fl[i + 1] += p; });
+  let a = 0; fl.forEach((f, i) => { if (f > 0) a += f; if (i >= 9) ac[i] = a; });
+  graf("g2", 17, -30000, 75000, 15000, fl, ac, { color: "#d4a85a", lc: "#1d1814",
+    anot: (x, y, bw) => `<line x1="50" x2="690" y1="${y(30000)}" y2="${y(30000)}" stroke="#c2412d" stroke-dasharray="5 5"/><text x="56" y="${y(30000) - 6}" font-size="11" fill="#9e3222">Lo aportado: 30.000 €</text><text x="${x(16) + bw / 2}" y="${y(ac[16]) - 8}" text-anchor="end" font-size="12" font-weight="600">${eur(M.cobradoInversores[15])}</text>` });
+
+  const C = M.cuentaBuey;
+  document.getElementById("cuenta").innerHTML = `<tr><th>Partida (euros por buey, Año 11)</th><th>Importe</th></tr>` +
+    C.ingresos.map(([k, v]) => `<tr><td>${k}</td><td>${eur(v)}</td></tr>`).join("") +
+    C.gastos.map(([k, v]) => `<tr><td>${k}</td><td style="color:#9e3222">−${eur(v)}</td></tr>`).join("") +
+    `<tr><td><strong>Resultado por buey</strong> (con ajuste de calibración)</td><td><strong>${eur(C.resultado)}</strong></td></tr>`;
+  const E = M.escenarios;
+  document.getElementById("esc").innerHTML = `<tr><th></th>${E.map(e => `<th>${e.nombre}</th>`).join("")}</tr>` +
+    [["Precio final (€/kg canal)", e => e.precio.toLocaleString("es-ES")], ["Resultado del Año 11", e => eur(e.resultado11)], ["Cobran los inversores", e => eur(e.reciben)],
+     ["Veces lo aportado", e => e.veces.toLocaleString("es-ES", { maximumFractionDigits: 1 })], ["TIR", e => e.tir], ["Recuperan", e => e.recuperan]]
+    .map(([k, f]) => `<tr><td>${k}</td>${E.map(e => `<td>${f(e)}</td>`).join("")}</tr>`).join("");
+  document.getElementById("med").innerHTML = `<tr><th>Medida</th><th>Cobran</th><th>Veces</th><th>TIR</th></tr><tr><td>Plan actual (Base)</td><td>${eur(69545)}</td><td>2,3</td><td>10,0 %</td></tr>` +
+    M.medidas.map(m => `<tr><td>${m.nombre}</td><td>${eur(m.reciben)}</td><td>${m.veces.toLocaleString("es-ES", { maximumFractionDigits: 1 })}</td><td>${m.tir.toLocaleString("es-ES", { minimumFractionDigits: 1 })} %</td></tr>`).join("");
+  document.getElementById("ruta").innerHTML = M.hitos.map(h => `<div class="${/nversor/.test(h.titulo) ? "inv" : ""}"><b>${an(h.anio)}</b><strong>${h.titulo}</strong><br>${h.texto}</div>`).join("");
+}
+</script>
+</body>
+</html>

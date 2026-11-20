@@ -11,6 +11,20 @@ window.MODELO = {
   cabezas: [11,22,32,32,33,28,28,28,33,38,43,44,44,44,45,45],
   pagoInversores: [0,0,0,0,0,0,0,0,5199,10095,14983,8344,8105,7860,7607,7354],
   cobradoInversores: [0,0,0,0,0,0,0,0,5199,15294,30277,38620,46725,54585,62192,69545],
+  hectareas: [16.5,32.5,41,41.7,34.4,34.4,34.4,34.4,41.9,49.4,56.9,57.5,58,58.6,59.1,59.1],
+  ayudasPAC: [5101,7139,9116,9207,9295,5396,5396,5396,6351,7306,8261,8333,8402,8470,8535,8599],
+  ayudasCapital: [72780,28000,0,0,0,0,0,0,8750,0,0,0,0,0,0,0],
+  inversiones: [51300,0,0,0,0,0,0,0,52236,28053,28894,0,0,0,0,0],
+  patrimonio: [15126,24528,42807,54818,85561,77623,73764,80456,64220,73325,94137,147155,198656,248598,296933,343661],
+  rebanoLonja: [13288,26177,32997,33572,34130,34130,34130,34130,47630,61130,74630,75083,75522,75949,76362,76763],
+  margen: [null,null,0.02,0.15,0.12,-0.17,-0.08,0.14,0.27,0.37,0.45,0.52,0.50,0.49,0.47,0.46],
+  // Medidas para mejorar el plan (hoja «Resumen»). Usan supuestos del promotor sin confirmar; la 5 es la más incierta.
+  medidas: [
+    { id: "M1", nombre: "Demostrar el precio ya", que: "Preventa: los primeros animales a 24 €/kg y la subida de precio un año antes.", reciben: 78555, veces: 2.62, tir: 12.8, recuperan: 9 },
+    { id: "M4", nombre: "Un cliente de alta gama dentro", que: "Un restaurante o tienda gourmet fijo que paga 5 €/kg más desde el Año 8.", reciben: 79555, veces: 2.65, tir: 11.8, recuperan: 10 },
+    { id: "M5", nombre: "Bueyes de otros criadores", que: "Vender 3 bueyes al año de otros criadores con la marca. Supuesto sin ningún criador confirmado.", reciben: 97661, veces: 3.26, tir: 14.1, recuperan: 10 }
+  ],
+  club: { plazas: 6, cuota: 2500, kgCarneAnio: 120, desdeAnio: 5, hastaAnio: 9 },
   aportacion: { tramo1: 5000, anioTramo1: 3, tramo2: 25000, anioTramo2: 4, total: 30000 },
   participacion: { hastaRecuperar: 0.23, despues: 0.10, hastaAnio: 15 },
   // Los pagos se cobran en junio del año siguiente al resultado.
@@ -28,7 +42,7 @@ window.MODELO = {
     resultado: 16194, precioMinimo: 22.5
   },
   // Sensibilidad del Año 11: resultado = a·bueyes·precio + b·bueyes + c (ajuste exacto de la hoja «Sensibilidad»).
-  sens: { a: 497.93, b: -11426.5, c: 1204.8, factorPromotor: 0.63 },
+  sens: { a: 497.93, b: -11426.5, c: 1243.8, factorPromotor: 0.63 },
   hitos: [
     { anio: 0, titulo: "Arranque", texto: "Instalaciones y vallado. Entran los primeros 6 terneros de Rubia Gallega. Ayuda de joven agricultor." },
     { anio: 2, titulo: "Club de clientes", texto: "Cuotas del club de clientes y primeras ventas de animales crecidos." },

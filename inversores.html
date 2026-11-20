@@ -61,6 +61,24 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
 .claves p{margin:4px 0 0;color:#4f443a;font-size:15px}
 .papel footer{border-top-color:#e2d6c4;color:#7a6b5d}
 .scroll{overflow-x:auto}
+.tri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
+.tri .panel{margin-top:0}.tri h3{font-size:19px;margin:0 0 2px}.tri p{margin:0 0 6px;font-size:14px;color:#5a4d42}
+.tri .fig{min-height:220px}
+.riesgos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}
+.riesgo{background:#fffaf2;border:1px solid #e2d6c4;border-radius:16px;padding:20px}
+.riesgo h3{font-size:20px;margin:0 0 8px}
+.riesgo .r{color:#9e3222;font-size:15px;margin:0 0 8px}
+.riesgo .m{font-size:15px;margin:0;padding-top:8px;border-top:1px dashed #e2d6c4}
+.riesgo .m b{color:#4f6b35}
+.promotor{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start}
+.avatar{width:120px;height:120px;border-radius:50%;background:#1d1814;color:#d4a85a;display:grid;place-items:center;font-family:var(--serif);font-size:44px}
+.promotor ul{margin:12px 0 0;padding-left:20px}.promotor li{margin:6px 0}
+.pasos90{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
+.pasos90 div{background:#f6f0e6;border-radius:12px;padding:14px;font-size:14px}
+.pasos90 b{display:block;font-family:var(--serif);font-weight:400;font-size:18px;margin-bottom:4px}
+.btn.descarga{background:#1d1814;color:#f3eadb}.btn.descarga:hover{background:#000}
+@media (max-width:900px){.tri,.riesgos{grid-template-columns:1fr}.pasos90{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.promotor{grid-template-columns:1fr}.pasos90{grid-template-columns:1fr}}
 @media (max-width:900px){.sim{grid-template-columns:1fr}.ruta{grid-template-columns:1fr 1fr}.claves{grid-template-columns:1fr}}
 @media (max-width:600px){.esc th,.esc td{padding:10px 6px;font-size:13px}.ruta{grid-template-columns:1fr}.barras .fila{grid-template-columns:minmax(0,1fr) 6em;}.barras .pista{grid-column:1/-1;order:3}.fig{min-height:300px}}
 @media print{.nav,.aviso,.ctrl{display:none}body.papel{background:#fff}}
@@ -70,7 +88,7 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
 <div class="aviso">Documento para inversores · Previsiones del modelo económico, no resultados</div>
 <header class="nav">
   <a class="logo" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="#9e3222" stroke-width="1.5"/><path d="M7 15c3 4 7 5 13 5s10-1 13-5" fill="none" stroke="#9e3222" stroke-width="1.8" stroke-linecap="round"/><path d="M9 30l7-9 4 4 4-6 7 11z" fill="#9e3222"/></svg>Casa Manjavacas</a>
-  <nav><a href="#negocio">Negocio</a><a href="#simulador">Simulador</a><a href="#escenarios">Escenarios</a><a href="#ruta">Hoja de ruta</a><a class="cta" href="index.html">Ver la marca</a></nav>
+  <nav><a href="#promotor">Promotor</a><a href="#negocio">Negocio</a><a href="#simulador">Simulador</a><a href="#riesgos">Riesgos</a><a href="#ruta">Hoja de ruta</a><a class="cta" href="Casa_Manjavacas_Dossier_Inversores.pdf" download>Descargar dossier</a></nav>
 </header>
 
 <section class="band" style="padding-bottom:20px">
@@ -79,6 +97,30 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
     <h1><span style="white-space:nowrap">30.000 €</span> hoy. Unos <span style="white-space:nowrap">69.500 €</span> de vuelta hasta 2043.</h1>
     <p class="lead">Un negocio pequeño a propósito: unos cinco bueyes de Rubia Gallega al año, criados cinco años en la Montaña Palentina y vendidos como producto gourmet. El inversor entra en 2030-2031 y cobra un porcentaje del resultado, sin devolución final.</p>
     <div class="kpis" id="kpis"></div>
+    <div class="botones"><a class="btn descarga" href="Casa_Manjavacas_Dossier_Inversores.pdf" download>Descargar el dossier en PDF</a><a class="btn sec" style="color:#1d1814;box-shadow:inset 0 0 0 1px #1d1814" href="index.html">Ver la marca</a></div>
+  </div>
+</section>
+
+<section class="band" id="promotor" style="padding-top:20px">
+  <div class="in panel promotor">
+    <div class="avatar" aria-hidden="true">CE</div>
+    <div>
+      <p class="nota" style="margin:0">Quién está detrás</p>
+      <h2>Carlos Espeso Manjavacas</h2>
+      <p class="lead" style="max-width:none">Promotor de Casa Manjavacas. Ingeniería de las Industrias Agrarias y Alimentarias en la Universidad de Valladolid (ETSIIAA, campus de Palencia), con el Trabajo Fin de Grado orientado a la industria cárnica.</p>
+      <ul>
+        <li>Formación técnica en toda la cadena de la carne: producción, transformación y calidad.</li>
+        <li>Coordina un equipo de entrenadores en una escuela deportiva de Valladolid: gestión de personas, grupos y clientes.</li>
+        <li>Ha construido el plan con un modelo económico completo a 15 años, con escenarios de riesgo y sensibilidad.</li>
+      </ul>
+      <h3 style="margin-top:22px">Lo próximo, antes de arrancar</h3>
+      <div class="pasos90">
+        <div><b>Demostrar el precio</b>Preventa y club de clientes fundadores.</div>
+        <div><b>Cerrar las ayudas</b>Ayuda de joven agricultor y Plan de Mejora.</div>
+        <div><b>Presupuestos firmados</b>Instalaciones, vallado y cámara.</div>
+        <div><b>Un cliente de alta gama</b>Restaurante o tienda gourmet fijo.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -101,6 +143,20 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
       <div class="fig" id="g-inversor"></div>
       <div class="leyenda"><span><i style="background:#c2412d"></i>Aportación</span><span><i style="background:#d4a85a"></i>Pago del año</span><span><i style="background:#1d1814;height:3px;width:20px"></i>Cobrado acumulado</span></div>
     </div>
+  </div>
+</section>
+
+
+<section class="band" style="padding-top:0">
+  <div class="in">
+    <h2>Cómo crece</h2>
+    <p class="lead">El precio sube por escalones mientras la marca se da a conocer. Desde el Año 8 entran vacas propias para criar terneros de Rubia Gallega en casa.</p>
+    <div class="tri">
+      <div class="panel"><h3>Precio de venta</h3><p>€/kg canal. Línea roja: precio mínimo para no perder dinero (22,5).</p><div class="fig" id="g-precio"></div></div>
+      <div class="panel"><h3>Rebaño</h3><p>Cabezas totales en la explotación.</p><div class="fig" id="g-rebano"></div></div>
+      <div class="panel"><h3>Ingresos y gastos</h3><p>Euros al año. Verde: ingresos. Rojo: gastos.</p><div class="fig" id="g-ingresos"></div></div>
+    </div>
+    <div class="kpis" id="kpis-valor"></div>
   </div>
 </section>
 
@@ -140,6 +196,28 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
     <p class="lead">El precio es lo que más mueve el resultado y todavía no está confirmado. Por eso el plan se ha calculado también con precios más bajos.</p>
     <div class="panel scroll"><table class="esc" id="tabla-esc"></table></div>
     <p class="nota" style="margin-top:10px">Conservador: precio final de 46,8 €/kg. Riesgo: vender a precio de lonja (21,3 €/kg), sin marca. Cifras de las hojas «Actual conservador» y «Actual riesgo» del modelo.</p>
+  </div>
+</section>
+
+
+<section class="band" id="riesgos" style="padding-top:0">
+  <div class="in">
+    <h2>Qué puede fallar y qué se hace</h2>
+    <p class="lead">Los puntos débiles del plan, dichos claramente, y la medida prevista para cada uno.</p>
+    <div class="riesgos">
+      <div class="riesgo"><h3>El precio no está confirmado</h3><p class="r">Es lo que más mueve el resultado. Vendiendo a precio de lonja (21,3 €/kg) los inversores no recuperarían lo aportado.</p><p class="m"><b>Medida:</b> preventa y club de clientes fundadores antes de comprometer más dinero. El contrato solo permite comprar vacas si en el Año 7 el precio llega a 24 €/kg.</p></div>
+      <div class="riesgo"><h3>La ayuda de joven agricultor no está concedida</h3><p class="r">El plan cuenta con 70.000 € de la convocatoria de la Junta de Castilla y León, con un 60 % de anticipo el primer año.</p><p class="m"><b>Medida:</b> no arrancar las inversiones grandes hasta tener la resolución.</p></div>
+      <div class="riesgo"><h3>Inversiones sin presupuesto cerrado</h3><p class="r">Instalaciones y vallado (51.300 €) y cámara de maduración (25.000 €) son estimaciones.</p><p class="m"><b>Medida:</b> presupuestos firmados. El modelo calcula un 10 % menos de coste en instalaciones.</p></div>
+      <div class="riesgo"><h3>Costes más altos o más bajas</h3><p class="r">El escenario Conservador supone un 15 % menos de precio, inflación y bajas del 5 %, un 30 % más de marketing y la cámara en el Año 13.</p><p class="m"><b>Medida:</b> aun así el negocio sale en positivo y los inversores cobran 1,3 veces lo aportado.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="in">
+    <h2>Y si sale mejor</h2>
+    <p class="lead">Tres medidas que el modelo ha calculado una a una. Usan supuestos sin confirmar: son el margen de mejora, no la base del plan.</p>
+    <div class="panel scroll"><table class="esc" id="tabla-medidas"></table></div>
   </div>
 </section>
 
@@ -240,7 +318,7 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
       const r = acum.findIndex(v => v >= 30000);
       g += `<circle cx="${x(r) + bw / 2}" cy="${y(acum[r])}" r="6" fill="#1d1814"/>`;
       g += `<text x="${x(r) + bw / 2 - 10}" y="${y(acum[r]) - 12}" text-anchor="end" font-size="13" fill="#1d1814">Recuperado en ${anioNat(r)}</text>`;
-      g += `<text x="${x(n - 1) + bw / 2}" y="${y(acum[n - 1]) - 12}" text-anchor="end" font-size="13" font-weight="600" fill="#1d1814">${eur(acum[n - 1])}</text>`;
+      g += `<text x="${x(n - 1) + bw / 2}" y="${y(acum[n - 1]) - 12}" text-anchor="end" font-size="13" font-weight="600" fill="#1d1814">${eur(M.cobradoInversores[15])}</text>`;
       s.innerHTML = g;
     };
     new ResizeObserver(draw).observe(s);
@@ -288,6 +366,42 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
   document.getElementById("tabla-esc").innerHTML =
     `<thead><tr><th></th>${E.map(e => `<th>${e.nombre}</th>`).join("")}</tr></thead><tbody>` +
     filasE.map(([k, f]) => `<tr><td>${k}</td>${E.map(e => `<td>${f(e)}</td>`).join("")}</tr>`).join("") + `</tbody>`;
+
+
+  // Gráficos pequeños
+  function mini(el, datos, opc) {
+    const s = document.createElementNS("http://www.w3.org/2000/svg", "svg"); el.appendChild(s);
+    const draw = () => {
+      const W = s.clientWidth, H = s.clientHeight, mL = 44, mR = 8, mT = 10, mB = 24, iw = W - mL - mR, ih = H - mT - mB;
+      const y = v => mT + (opc.max - v) / (opc.max - opc.min) * ih, n = M.anios.length, x = i => mL + (i + .5) * iw / n;
+      let g = "";
+      opc.ticks.forEach(t => { g += `<line x1="${mL}" x2="${W - mR}" y1="${y(t)}" y2="${y(t)}" stroke="#e2d6c4"/><text x="${mL - 6}" y="${y(t) + 4}" text-anchor="end" font-size="11" fill="#7a6b5d">${opc.fmt(t)}</text>`; });
+      [0, 5, 10, 15].forEach(i => { g += `<text x="${x(i)}" y="${H - 6}" text-anchor="middle" font-size="11" fill="#5a4d42">${anioNat(i)}</text>`; });
+      if (opc.umbral != null) g += `<line x1="${mL}" x2="${W - mR}" y1="${y(opc.umbral)}" y2="${y(opc.umbral)}" stroke="#c2412d" stroke-dasharray="4 4"/>`;
+      datos.forEach(d => {
+        if (d.tipo === "barras") d.v.forEach((v, i) => { if (v) g += `<rect x="${x(i) - iw / n * .32}" y="${y(v)}" width="${iw / n * .64}" height="${y(0) - y(v)}" rx="2" fill="${d.color}"><title>${anioNat(i)}: ${opc.fmt(v)}</title></rect>`; });
+        else g += `<polyline fill="none" stroke="${d.color}" stroke-width="2.5" stroke-linejoin="round" points="${d.v.map((v, i) => v == null ? "" : `${x(i)},${y(v)}`).join(" ")}"/>`;
+      });
+      s.innerHTML = g;
+    };
+    new ResizeObserver(draw).observe(s);
+  }
+  const k = v => v >= 1000 ? Math.round(v / 1000) + " k" : String(v);
+  mini(document.getElementById("g-precio"), [{ tipo: "barras", color: "#d4a85a", v: M.precio }], { min: 0, max: 60, ticks: [0, 20, 40, 60], fmt: v => v + " €", umbral: 22.5 });
+  mini(document.getElementById("g-rebano"), [{ tipo: "barras", color: "#4f6b35", v: M.cabezas }], { min: 0, max: 50, ticks: [0, 25, 50], fmt: v => String(v) });
+  mini(document.getElementById("g-ingresos"), [{ color: "#4f6b35", v: M.ingresos }, { color: "#c2412d", v: M.gastos }], { min: 0, max: 180000, ticks: [0, 60000, 120000, 180000], fmt: k });
+  const sum = a => a.reduce((x, y) => x + y, 0);
+  document.getElementById("kpis-valor").innerHTML = [
+    [eur(sum(M.ayudasCapital)), "de ayudas de capital previstas (instalación, mejora y LEADER)"],
+    [eur(sum(M.ayudasPAC)), "de ayudas PAC en 16 años"],
+    [eur(M.rebanoLonja[15]), "vale el rebaño en el Año 15, a precio de lonja y sin marca"],
+    [eur(M.patrimonio[15]), "de patrimonio del negocio en el Año 15 (caja + rebaño)"]
+  ].map(([v, t]) => `<div class="kpi"><b>${v}</b><span>${t}</span></div>`).join("");
+
+  // Medidas
+  document.getElementById("tabla-medidas").innerHTML = `<thead><tr><th>Medida</th><th>Cobran los inversores</th><th>Veces lo aportado</th><th>TIR</th><th>Recuperan</th></tr></thead><tbody>
+    <tr><td>Plan actual (Base)</td><td>${eur(69545)}</td><td>2,3</td><td>10,0 %</td><td>Año 10</td></tr>` +
+    M.medidas.map(m => `<tr><td><strong>${m.nombre}</strong><br><span class="nota">${m.que}</span></td><td>${eur(m.reciben)}</td><td>${m.veces.toLocaleString("es-ES", { maximumFractionDigits: 1 })}</td><td>${m.tir.toLocaleString("es-ES", { minimumFractionDigits: 1 })} %</td><td>Año ${m.recuperan}</td></tr>`).join("") + `</tbody>`;
 
   // Hitos
   document.getElementById("hitos").innerHTML = M.hitos.map(h =>

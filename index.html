@@ -83,8 +83,19 @@
   <div class="in club">
     <div>
       <h2>Club de clientes fundadores</h2>
-      <p class="lead">Los primeros clientes entran en el club desde el segundo año y reciben carne de los primeros bueyes de la casa. Pocas plazas, porque hay pocos animales.</p>
-      <div class="botones"><a class="btn" href="inversores.html">Ver el proyecto completo</a></div>
+      <p class="lead">Seis plazas. Cuota única de 2.500 € y, del quinto al noveno año, la primera carne de la casa: 120 kg al año repartidos entre los seis socios.</p>
+      <div class="plazas" id="plazas"></div>
+      <form class="reserva" id="reserva" novalidate>
+        <div class="campos">
+          <label>Nombre<input id="f-nombre" autocomplete="name" required></label>
+          <label>Email<input id="f-email" type="email" autocomplete="email" required></label>
+          <label>Teléfono <span>(opcional)</span><input id="f-tel" type="tel" autocomplete="tel"></label>
+          <label class="ancho">¿Algo que quieras contarnos? <span>(opcional)</span><textarea id="f-msg" rows="2"></textarea></label>
+        </div>
+        <button class="btn" type="submit">Reservar mi plaza</button>
+        <p class="estado-reserva" id="f-estado" role="status"></p>
+        <p class="nota">Es una reserva de interés: las condiciones se confirman después, por escrito.</p>
+      </form>
     </div>
     <div class="etiqueta">
       <div class="marca">Casa Manjavacas</div>
@@ -109,6 +120,7 @@
 <script src="assets/qrcode.js"></script>
 <script src="assets/paisaje.js"></script>
 <script src="data/bueyes.js"></script>
+<script src="data/config.js"></script>
 <script src="assets/app.js"></script>
 <script>
 {
@@ -130,6 +142,25 @@
   ];
   document.getElementById("pasos").innerHTML = CM.ETAPAS.map((e, i) =>
     `<div class="paso"><svg viewBox="0 0 64 64" aria-hidden="true">${iconos[i]}</svg><h3>${e.nombre}</h3><p>${e.detalle}</p></div>`).join("");
+
+
+  // Club: plazas y reserva
+  const C = window.CONFIG_CLUB;
+  document.getElementById("plazas").innerHTML = `<div class="puntos">${Array.from({ length: C.plazas }, (_, i) => `<i class="${i < C.plazasReservadas ? "llena" : ""}"></i>`).join("")}</div><span>${C.plazasReservadas} de ${C.plazas} plazas reservadas</span>`;
+  document.getElementById("reserva").addEventListener("submit", async e => {
+    e.preventDefault();
+    const est = document.getElementById("f-estado");
+    const v = { nombre: document.getElementById("f-nombre").value.trim(), email: document.getElementById("f-email").value.trim(), telefono: document.getElementById("f-tel").value.trim(), mensaje: document.getElementById("f-msg").value.trim() };
+    if (!v.nombre || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.email)) { est.textContent = "Escribe tu nombre y un email válido."; return; }
+    if (C.formularioGoogle) {
+      const fd = new FormData();
+      Object.keys(C.campos).forEach(k => { if (C.campos[k]) fd.append(C.campos[k], v[k]); });
+      try { await fetch(C.formularioGoogle, { method: "POST", mode: "no-cors", body: fd }); est.textContent = "Reserva enviada. Te escribiremos pronto."; e.target.reset(); }
+      catch (err) { est.textContent = "No se ha podido enviar. Inténtalo de nuevo en un momento."; }
+    } else {
+      est.textContent = "Demostración: el formulario todavía no está conectado, así que esta reserva no se ha enviado.";
+    }
+  });
 
   document.getElementById("qr-lucero").innerHTML = CM.qrSVG(CM.urlFicha("CM-001"), "#14110f");
 }
