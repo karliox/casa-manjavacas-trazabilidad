@@ -58,9 +58,10 @@
 
 <script src="assets/paisaje.js"></script>
 <script src="data/bueyes.js"></script>
+<script src="data/config.js"></script>
 <script src="assets/app.js"></script>
 <script>
-{
+CM.listo(() => {
   document.getElementById("paisaje").outerHTML = paisajeSVG({ bueyes: [[1060, 712, -1], [1240, 726, 1]] });
   const id = new URLSearchParams(location.search).get("id") || "CM-001";
   const b = CM.bueyes().find(x => x.id === id);
@@ -110,7 +111,7 @@
         `<div class="corte"><h3>${CM.esc(c)}</h3><p>${CM.esc(CM.COCINA[c] || "Consulta a tu carnicero.")}</p></div>`).join("");
     }
   }
-}
+});
 </script>
 </body>
 </html>

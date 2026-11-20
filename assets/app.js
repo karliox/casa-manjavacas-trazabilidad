@@ -55,5 +55,59 @@
     if (color) s = s.replace(/fill="black"/g, 'fill="' + color + '"');
     return s;
   }
-  window.CM = { ESTADOS, TIPOS, ETAPAS, ORDEN, COCINA, bueyes, hoy, fmt, fmtCorto, dias, meses, eur, num, esc, urlFicha, qrSVG, guardarEventoLocal };
+
+  // Carga desde Google Sheets (pestañas «Bueyes» y «Eventos»), con los datos de ejemplo como respaldo.
+  function csv(t) {
+    const filas = []; let f = [], c = "", q = false;
+    for (let i = 0; i < t.length; i++) {
+      const ch = t[i];
+      if (q) { if (ch === '"') { if (t[i + 1] === '"') { c += '"'; i++; } else q = false; } else c += ch; }
+      else if (ch === '"') q = true;
+      else if (ch === ",") { f.push(c); c = ""; }
+      else if (ch === "\n" || ch === "\r") { if (ch === "\r" && t[i + 1] === "\n") i++; f.push(c); filas.push(f); f = []; c = ""; }
+      else c += ch;
+    }
+    if (c || f.length) { f.push(c); filas.push(f); }
+    const cab = (filas.shift() || []).map(h => h.trim());
+    return filas.filter(r => r.some(x => x.trim())).map(r => Object.fromEntries(cab.map((h, i) => [h, (r[i] || "").trim()])));
+  }
+  function fechaISO(v) {
+    if (!v) return "";
+    if (/^\d{4}-\d{2}-\d{2}/.test(v)) return v.slice(0, 10);
+    const m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})/.exec(v);
+    return m ? `${m[3]}-${m[2].padStart(2, "0")}-${m[1].padStart(2, "0")}` : v;
+  }
+  const n = v => v === "" || v == null ? undefined : Number(String(v).replace(",", "."));
+  let fuente = "ejemplo";
+  async function cargarHoja() {
+    const C = window.CONFIG_DATOS || {};
+    if (!C.hojaGoogle) return;
+    const url = p => `https://docs.google.com/spreadsheets/d/${C.hojaGoogle}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(p)}`;
+    const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 6000);
+    try {
+      const [rb, re] = await Promise.all([fetch(url("Bueyes"), { signal: ctl.signal }), fetch(url("Eventos"), { signal: ctl.signal })]);
+      if (!rb.ok || !re.ok) return;
+      const tb = await rb.text(), te = await re.text();
+      if (/^\s*</.test(tb)) return; // página de inicio de sesión: la hoja no está compartida
+      const bs = csv(tb), es = csv(te);
+      if (!bs.length || !("id" in bs[0])) return;
+      window.BUEYES = bs.map(b => ({
+        id: b.id, nombre: b.nombre, crotal: b.crotal, raza: b.raza || "Rubia Gallega",
+        nacimiento: fechaISO(b.nacimiento), entrada: fechaISO(b.entrada), estado: (b.estado || "ceba").toLowerCase(),
+        sacrificio: fechaISO(b.sacrificio) || undefined, pesoCanal: n(b.pesoCanal), pesoVivo: n(b.pesoVivo), diasMaduracion: n(b.diasMaduracion),
+        cortes: b.cortes ? b.cortes.split(",").map(x => x.trim()).filter(Boolean) : [],
+        eventos: es.filter(e => e.id === b.id).map(e => ({ fecha: fechaISO(e.fecha), tipo: (e.tipo || "otro").toLowerCase(), texto: e.texto }))
+      }));
+      window.FECHA_DEMO = C.fechaSimulada || null;
+      fuente = "hoja";
+    } catch (e) { /* sin conexión o hoja privada: seguimos con los datos de ejemplo */ }
+    finally { clearTimeout(t); }
+  }
+  const promesa = cargarHoja();
+  const listo = fn => promesa.then(() => {
+    fn();
+    if (fuente === "hoja" && !window.FECHA_DEMO) document.querySelectorAll(".demo").forEach(d => d.remove());
+  }, () => fn());
+
+  window.CM = { ESTADOS, TIPOS, ETAPAS, ORDEN, COCINA, bueyes, hoy, fmt, fmtCorto, dias, meses, eur, num, esc, urlFicha, qrSVG, guardarEventoLocal, listo, fuente: () => fuente };
 })();
