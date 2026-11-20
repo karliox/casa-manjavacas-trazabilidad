@@ -64,3 +64,5 @@ input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);
   .datos{grid-template-columns:1fr 1fr;gap:10px}.dato b{font-size:17px}
 }
 @media print{.demo,header.top,.acciones{display:none}}
+
+.scroll{overflow-x:auto;border-radius:12px}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Club de fundadores · Casa Manjavacas</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Club de fundadores · Casa Manjavacas">
+<meta property="og:description" content="Seis plazas para recibir la primera carne de buey de Casa Manjavacas, criado cinco años en la Montaña Palentina.">
+<meta property="og:image" content="https://karliox.github.io/casa-manjavacas-trazabilidad/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/marca.css">
+<style>
+.calendario{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:28px}
+.mes{border:1px solid var(--linea);border-radius:14px;padding:16px;background:var(--noche2);position:relative}
+.mes b{display:block;font-family:var(--serif);font-weight:400;font-size:30px;color:var(--oro)}
+.mes span{font-size:14px;color:var(--crema2)}
+.mes.cuota{border-color:var(--brasa)}.mes.cuota b{color:var(--crema)}
+.faq{max-width:860px}
+.faq details{border-bottom:1px solid var(--linea);padding:16px 0}
+.faq summary{cursor:pointer;font-family:var(--serif);font-size:21px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::after{content:"+";color:var(--oro);font-family:var(--sans)}
+.faq details[open] summary::after{content:"−"}
+.faq p{color:var(--crema2);margin:10px 0 0}
+.reserva-caja{background:linear-gradient(140deg,#2a1d16,#4a2318 60%,#6b2a1e);border-radius:24px;padding:clamp(24px,5vw,56px);max-width:860px}
+@media (max-width:900px){.calendario{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){.calendario{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="aviso">Proyecto en desarrollo · Condiciones definitivas por escrito antes de pagar nada</div>
+<header class="nav">
+  <a class="logo" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="#d4a85a" stroke-width="1.5"/><path d="M7 15c3 4 7 5 13 5s10-1 13-5" fill="none" stroke="#d4a85a" stroke-width="1.8" stroke-linecap="round"/><path d="M9 30l7-9 4 4 4-6 7 11z" fill="#d4a85a"/></svg>Casa Manjavacas</a>
+  <nav><a href="index.html">Inicio</a><a href="la-carne.html">La carne</a><a class="cta" href="#reservar">Reservar plaza</a></nav>
+</header>
+
+<section class="hero">
+  <div id="paisaje"></div>
+  <div class="texto">
+    <h1>Seis plazas para la primera carne de la casa.</h1>
+    <p class="lead">El Club de fundadores de Casa Manjavacas reúne a seis personas que apoyan el proyecto desde el principio y reciben, durante cinco años, carne de los primeros bueyes criados en la Montaña Palentina.</p>
+    <div class="plazas" id="plazas"></div>
+    <div class="botones"><a class="btn" href="#reservar">Reservar mi plaza</a><a class="btn sec" href="#preguntas">Preguntas frecuentes</a></div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="in">
+    <div class="cifras">
+      <div class="cifra"><b>6</b><span>plazas, ni una más</span></div>
+      <div class="cifra"><b>2.500 €</b><span>de cuota única</span></div>
+      <div class="cifra"><b>5 años</b><span>de entregas, de 2032 a 2036</span></div>
+      <div class="cifra"><b>≈100 kg</b><span>de carne por socio en total</span></div>
+    </div>
+    <p class="nota" style="margin-top:12px">Según el plan: 120 kg de carne al año para el club, repartidos entre los seis socios. Sale a unos 25 € por kilo de carne, menos de la mitad del precio previsto para la venta normal.</p>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="in">
+    <h2>El calendario</h2>
+    <p class="lead">El buey necesita su tiempo: unos cinco años desde que llega de ternero. Por eso la cuota se paga al principio y la carne llega cuando los primeros bueyes están listos.</p>
+    <div class="calendario">
+      <div class="mes cuota"><b>2029</b><span>Cuota de socio fundador</span></div>
+      <div class="mes"><b>2032</b><span>Primera entrega</span></div>
+      <div class="mes"><b>2033</b><span>Segunda entrega</span></div>
+      <div class="mes"><b>2034</b><span>Tercera entrega</span></div>
+      <div class="mes"><b>2035</b><span>Cuarta entrega</span></div>
+      <div class="mes"><b>2036</b><span>Quinta entrega</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="in duo">
+    <div>
+      <h2>Conocerás a tu buey</h2>
+      <p class="lead">Cada pieza lleva una etiqueta con código QR. Al escanearla ves la vida de ese animal: cuándo llegó, cuántos años pastó en la montaña, cuándo se sacrificó y cuántos días maduró.</p>
+      <div class="botones"><a class="btn sec" href="ficha.html?id=CM-001">Ver una ficha de ejemplo</a></div>
+    </div>
+    <div class="etiqueta">
+      <div class="marca">Casa Manjavacas</div>
+      <dl>
+        <dt>Socio</dt><dd>Club de fundadores</dd>
+        <dt>Buey</dt><dd>Lucero · CM-001</dd>
+        <dt>Pieza</dt><dd>Chuletón</dd>
+        <dt>Maduración</dt><dd>60 días</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="preguntas" style="padding-top:0">
+  <div class="in faq">
+    <h2>Preguntas frecuentes</h2>
+    <details><summary>¿Qué recibo exactamente?</summary><p>Carne de los primeros bueyes de Casa Manjavacas, madurada y envasada, con su etiqueta y su QR. El club recibe en total 120 kg de carne al año durante cinco años, repartidos entre los seis socios.</p></details>
+    <details><summary>¿Por qué se paga tan pronto?</summary><p>Criar un buey lleva unos cinco años. La cuota ayuda a arrancar el proyecto y, a cambio, los fundadores reciben la carne a un precio muy por debajo del de venta.</p></details>
+    <details><summary>¿Qué raza es y cómo se cría?</summary><p>Rubia Gallega. Los terneros llegan con unos siete meses, pasan unos cuatro años en pasto extensivo en la Montaña Palentina y un último año de engorde final con heno y cereal. Después, sacrificio en matadero autorizado y maduración en seco. <a href="la-carne.html">Más sobre la carne</a>.</p></details>
+    <details><summary>¿Reservar me compromete?</summary><p>No. La reserva es solo para apuntarte. Antes de pagar nada recibirás las condiciones completas por escrito: calendario, piezas, forma de entrega y qué pasa si algo cambia.</p></details>
+    <details><summary>¿Y si el proyecto se retrasa?</summary><p>Se incluirá en las condiciones por escrito que recibirás antes de pagar.</p></details>
+  </div>
+</section>
+
+<section class="band" id="reservar" style="padding-top:0">
+  <div class="in">
+    <div class="reserva-caja">
+      <h2>Reserva tu plaza</h2>
+      <p class="lead">Déjanos tus datos y te escribimos con las condiciones.</p>
+      <form class="reserva" id="reserva" novalidate>
+        <div class="campos">
+          <label>Nombre<input id="f-nombre" autocomplete="name" required></label>
+          <label>Email<input id="f-email" type="email" autocomplete="email" required></label>
+          <label>Teléfono <span>(opcional)</span><input id="f-tel" type="tel" autocomplete="tel"></label>
+          <label class="ancho">¿Algo que quieras contarnos? <span>(opcional)</span><textarea id="f-msg" rows="2"></textarea></label>
+        </div>
+        <button class="btn" type="submit">Reservar mi plaza</button>
+        <p class="estado-reserva" id="f-estado" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="in">
+    <span>Casa Manjavacas · Montaña Palentina</span>
+    <span>Proyecto en desarrollo. Las cifras del club salen del plan de negocio y se confirmarán por escrito.</span>
+  </div>
+</footer>
+
+<script src="assets/paisaje.js"></script>
+<script src="data/config.js"></script>
+<script>
+{
+  document.getElementById("paisaje").outerHTML = paisajeSVG();
+  const C = window.CONFIG_CLUB;
+  document.getElementById("plazas").innerHTML = `<div class="puntos">${Array.from({ length: C.plazas }, (_, i) => `<i class="${i < C.plazasReservadas ? "llena" : ""}"></i>`).join("")}</div><span>${C.plazasReservadas} de ${C.plazas} plazas reservadas</span>`;
+  document.getElementById("reserva").addEventListener("submit", async e => {
+    e.preventDefault();
+    const est = document.getElementById("f-estado");
+    const v = { nombre: document.getElementById("f-nombre").value.trim(), email: document.getElementById("f-email").value.trim(), telefono: document.getElementById("f-tel").value.trim(), mensaje: document.getElementById("f-msg").value.trim() };
+    if (!v.nombre || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.email)) { est.textContent = "Escribe tu nombre y un email válido."; return; }
+    if (C.formularioGoogle) {
+      const fd = new FormData();
+      Object.keys(C.campos).forEach(k => { if (C.campos[k]) fd.append(C.campos[k], v[k]); });
+      try { await fetch(C.formularioGoogle, { method: "POST", mode: "no-cors", body: fd }); est.textContent = "Reserva enviada. Te escribiremos pronto."; e.target.reset(); }
+      catch (err) { est.textContent = "No se ha podido enviar. Inténtalo de nuevo en un momento."; }
+    } else {
+      est.textContent = "Demostración: el formulario todavía no está conectado, así que esta reserva no se ha enviado.";
+    }
+  });
+}
+</script>
+</body>
+</html>

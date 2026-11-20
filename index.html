@@ -18,9 +18,9 @@
 <header class="nav">
   <a class="logo" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="#d4a85a" stroke-width="1.5"/><path d="M7 15c3 4 7 5 13 5s10-1 13-5" fill="none" stroke="#d4a85a" stroke-width="1.8" stroke-linecap="round"/><path d="M9 30l7-9 4 4 4-6 7 11z" fill="#d4a85a"/></svg>Casa Manjavacas</a>
   <nav>
-    <a href="#proceso">El buey</a>
+    <a href="la-carne.html">La carne</a>
     <a href="#trazabilidad">Trazabilidad</a>
-    <a href="#club">Club</a>
+    <a href="club.html">Club</a>
     <a href="panel.html">Panel</a>
     <a class="cta" href="inversores.html">Inversores</a>
   </nav>
@@ -91,17 +91,7 @@
       <h2>Club de clientes fundadores</h2>
       <p class="lead">Seis plazas. Cuota única de 2.500 € y, del quinto al noveno año, la primera carne de la casa: 120 kg al año repartidos entre los seis socios.</p>
       <div class="plazas" id="plazas"></div>
-      <form class="reserva" id="reserva" novalidate>
-        <div class="campos">
-          <label>Nombre<input id="f-nombre" autocomplete="name" required></label>
-          <label>Email<input id="f-email" type="email" autocomplete="email" required></label>
-          <label>Teléfono <span>(opcional)</span><input id="f-tel" type="tel" autocomplete="tel"></label>
-          <label class="ancho">¿Algo que quieras contarnos? <span>(opcional)</span><textarea id="f-msg" rows="2"></textarea></label>
-        </div>
-        <button class="btn" type="submit">Reservar mi plaza</button>
-        <p class="estado-reserva" id="f-estado" role="status"></p>
-        <p class="nota">Es una reserva de interés: las condiciones se confirman después, por escrito.</p>
-      </form>
+      <div class="botones"><a class="btn" href="club.html">Ver el club y reservar plaza</a></div>
     </div>
     <div class="etiqueta">
       <div class="marca">Casa Manjavacas</div>
@@ -118,7 +108,7 @@
 
 <footer>
   <div class="in">
-    <span>Casa Manjavacas · Montaña Palentina</span>
+    <span>Casa Manjavacas · Montaña Palentina · <a href="la-carne.html">La carne</a> · <a href="club.html">Club</a> · <a href="inversores.html">Inversores</a> · <a href="panel.html">Panel</a></span>
     <span>Demostración: los animales y fechas son ejemplos. La trazabilidad oficial obligatoria (crotales, DIB y SITRAN) se mantiene aparte.</span>
   </div>
 </footer>
@@ -153,20 +143,6 @@
   // Club: plazas y reserva
   const C = window.CONFIG_CLUB;
   document.getElementById("plazas").innerHTML = `<div class="puntos">${Array.from({ length: C.plazas }, (_, i) => `<i class="${i < C.plazasReservadas ? "llena" : ""}"></i>`).join("")}</div><span>${C.plazasReservadas} de ${C.plazas} plazas reservadas</span>`;
-  document.getElementById("reserva").addEventListener("submit", async e => {
-    e.preventDefault();
-    const est = document.getElementById("f-estado");
-    const v = { nombre: document.getElementById("f-nombre").value.trim(), email: document.getElementById("f-email").value.trim(), telefono: document.getElementById("f-tel").value.trim(), mensaje: document.getElementById("f-msg").value.trim() };
-    if (!v.nombre || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.email)) { est.textContent = "Escribe tu nombre y un email válido."; return; }
-    if (C.formularioGoogle) {
-      const fd = new FormData();
-      Object.keys(C.campos).forEach(k => { if (C.campos[k]) fd.append(C.campos[k], v[k]); });
-      try { await fetch(C.formularioGoogle, { method: "POST", mode: "no-cors", body: fd }); est.textContent = "Reserva enviada. Te escribiremos pronto."; e.target.reset(); }
-      catch (err) { est.textContent = "No se ha podido enviar. Inténtalo de nuevo en un momento."; }
-    } else {
-      est.textContent = "Demostración: el formulario todavía no está conectado, así que esta reserva no se ha enviado.";
-    }
-  });
 
   document.getElementById("qr-lucero").innerHTML = CM.qrSVG(CM.urlFicha("CM-001"), "#14110f");
 }
