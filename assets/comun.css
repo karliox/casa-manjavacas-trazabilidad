@@ -1,0 +1,74 @@
+/* Cabecera, pie y detalles comunes a todas las páginas de Casa Manjavacas. */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap");
+
+.cabecera{position:sticky;top:0;z-index:30;transition:box-shadow .2s ease,background .2s ease}
+.cab-in{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px max(5vw,16px)}
+.cab-logo{display:inline-flex;align-items:center;gap:11px;text-decoration:none;white-space:nowrap}
+.cab-logo svg{width:34px;height:34px;flex:none}
+.cab-logo span{font-family:"Fraunces",Georgia,serif;font-size:20px;letter-spacing:.01em;line-height:1.1}
+.cab-logo small{display:block;font-family:"Inter",system-ui,sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-top:2px}
+.cabecera nav{display:flex;align-items:center;gap:4px}
+.cabecera nav a{font:500 15px/1 "Inter",system-ui,sans-serif;text-decoration:none;padding:11px 12px;border-radius:99px;transition:background .15s ease,color .15s ease}
+.cabecera nav a.cab-cta{margin-left:8px;padding:11px 18px}
+.cab-menu{display:none;align-items:center;gap:4px;flex-direction:column;justify-content:center;width:46px;height:46px;border-radius:12px;background:transparent;cursor:pointer;padding:0}
+.cab-menu span{display:block;width:20px;height:2px;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+.cab-menu b{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.cabecera.abierta .cab-menu span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.cabecera.abierta .cab-menu span:nth-child(2){opacity:0}
+.cabecera.abierta .cab-menu span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.cabecera a:focus-visible,.cab-menu:focus-visible{outline:2px solid #d4a85a;outline-offset:2px}
+
+/* Oscura (marca) */
+.cab-oscura{background:rgba(20,17,15,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(243,234,219,.1)}
+.cab-oscura .cab-logo{color:#f3eadb}.cab-oscura .cab-logo svg{color:#d4a85a}
+.cab-oscura nav a{color:#d9cbb5}
+.cab-oscura nav a:hover{color:#f3eadb;background:rgba(243,234,219,.07)}
+.cab-oscura nav a[aria-current]{color:#f3eadb;background:rgba(243,234,219,.1)}
+.cab-oscura nav a.cab-cta{background:#c2412d;color:#fff}
+.cab-oscura nav a.cab-cta:hover{background:#9e3222}
+.cab-oscura .cab-menu{border:1px solid rgba(243,234,219,.2)}.cab-oscura .cab-menu span{background:#f3eadb}
+.cab-oscura.con-sombra{box-shadow:0 10px 30px rgba(0,0,0,.35)}
+
+/* Clara (herramientas e inversores) */
+.cab-clara{background:rgba(250,246,239,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #e6dccf}
+.cab-clara .cab-logo{color:#2b211b}.cab-clara .cab-logo svg{color:#7a2e2a}
+.cab-clara nav a{color:#5a4d42}
+.cab-clara nav a:hover{color:#2b211b;background:#efe6d8}
+.cab-clara nav a[aria-current]{color:#7a2e2a;background:#f1e4dc}
+.cab-clara nav a.cab-cta{background:#2b211b;color:#f6f1ea}
+.cab-clara nav a.cab-cta:hover{background:#000}
+.cab-clara .cab-menu{border:1px solid #d9ccbb}.cab-clara .cab-menu span{background:#2b211b}
+.cab-clara.con-sombra{box-shadow:0 8px 24px rgba(60,40,20,.08)}
+
+@media (max-width:860px){
+  .cab-menu{display:inline-flex;position:relative}
+  .cabecera nav{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:2px;padding:10px max(5vw,16px) 18px}
+  .cabecera.abierta nav{display:flex}
+  .cabecera nav a{padding:14px 12px;font-size:17px;border-radius:12px}
+  .cabecera nav a.cab-cta{margin:8px 0 0;text-align:center}
+  .cab-oscura nav{background:#14110f;border-bottom:1px solid rgba(243,234,219,.12);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+  .cab-clara nav{background:#faf6ef;border-bottom:1px solid #e6dccf;box-shadow:0 20px 40px rgba(60,40,20,.12)}
+  .cab-logo span{font-size:18px}
+}
+
+/* Pie */
+.pie-web{background:#0f0c0b;color:#a8977f;font:15px/1.6 "Inter",system-ui,sans-serif;border-top:1px solid rgba(243,234,219,.08)}
+.pie-in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:32px;padding:56px max(5vw,16px) 36px}
+.pie-web .cab-logo{color:#f3eadb}.pie-web .cab-logo svg{color:#d4a85a}
+.pie-marca p{max-width:380px;margin:14px 0 0}
+.pie-col h4{font:600 12px/1 "Inter",system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d4a85a;margin:8px 0 14px}
+.pie-col a{display:block;color:#d9cbb5;text-decoration:none;padding:5px 0}
+.pie-col a:hover{color:#f3eadb}
+.pie-legal{max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding:18px max(5vw,16px) 28px;border-top:1px solid rgba(243,234,219,.08);font-size:13px}
+@media (max-width:760px){.pie-in{grid-template-columns:1fr 1fr}.pie-marca{grid-column:1/-1}}
+
+/* Aviso superior discreto */
+.aviso,.demo{font:500 12.5px/1.4 "Inter",system-ui,sans-serif;letter-spacing:.01em;text-align:center;padding:8px 16px}
+
+/* Aparición suave al hacer scroll */
+.revela{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.revela.visible{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.revela{opacity:1;transform:none;transition:none}}
+.salto{position:absolute;left:-9999px;top:8px;z-index:50;background:#d4a85a;color:#14110f;padding:10px 14px;border-radius:8px;font:600 14px "Inter",sans-serif}
+.salto:focus{left:12px}
+@media print{.revela{opacity:1!important;transform:none!important}.cabecera,.pie-web,.salto{display:none}}

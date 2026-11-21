@@ -11,15 +11,14 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="assets/marca.css">
+<link rel="stylesheet" href="assets/comun.css">
 </head>
 <body>
 <div class="aviso">Demostración · Animal y fechas de ejemplo</div>
-<header class="nav">
-  <a class="logo" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="#d4a85a" stroke-width="1.5"/><path d="M7 15c3 4 7 5 13 5s10-1 13-5" fill="none" stroke="#d4a85a" stroke-width="1.8" stroke-linecap="round"/><path d="M9 30l7-9 4 4 4-6 7 11z" fill="#d4a85a"/></svg>Casa Manjavacas</a>
-  <nav><a href="index.html">Inicio</a><a href="panel.html">Panel</a></nav>
-</header>
+<a class="salto" href="#contenido">Saltar al contenido</a>
+<header data-cabecera="publica"></header>
 
-<section class="ficha-hero">
+<section class="ficha-hero" id="contenido">
   <div id="paisaje"></div>
   <span class="sello" id="sello">FICHA DE TRAZABILIDAD</span>
   <h1 id="nombre">—</h1>
@@ -29,7 +28,7 @@
 <div class="viaje" id="viaje"></div>
 
 <section class="band">
-  <div class="in dos">
+  <div class="in revela dos">
     <div>
       <h2>Su vida, paso a paso</h2>
       <ul class="linea" id="historia"></ul>
@@ -43,18 +42,14 @@
 </section>
 
 <section class="band" id="bloque-cortes" style="padding-top:0;display:none">
-  <div class="in">
+  <div class="in revela">
     <h2>Cortes de este buey y cómo cocinarlos</h2>
     <div class="cortes" id="cortes"></div>
   </div>
 </section>
 
-<footer>
-  <div class="in">
-    <span>Casa Manjavacas · Buey de ceba extensiva · Montaña Palentina</span>
-    <span>Esta ficha complementa la trazabilidad oficial del animal (crotal, DIB y SITRAN).</span>
-  </div>
-</footer>
+<footer data-pie></footer>
+<script src="assets/layout.js"></script>
 
 <script src="assets/paisaje.js"></script>
 <script src="data/bueyes.js"></script>

@@ -10,6 +10,7 @@
 <meta name="theme-color" content="#7a2e2a">
 <link rel="apple-touch-icon" href="assets/icono-180.png">
 <link rel="stylesheet" href="assets/estilo.css">
+<link rel="stylesheet" href="assets/comun.css">
 <style>
 /*
 VOICE: herramienta de trabajo, clara y rápida.
@@ -38,7 +39,7 @@ LAYOUT: formulario a la izquierda, vista previa de la hoja a la derecha.
 @media print{
   @page{size:A4;margin:0}
   body{background:#fff}
-  .demo,header.top,.panelform,h1,.sub{display:none!important}
+  .demo,.cabecera,.pie-web,.salto,.panelform,h1,.sub{display:none!important}
   main{padding:0;max-width:none}
   .trabajo{display:block}
   .hoja{box-shadow:none;margin:0;width:210mm;height:297mm;max-width:none;page-break-after:always}
@@ -48,11 +49,9 @@ LAYOUT: formulario a la izquierda, vista previa de la hoja a la derecha.
 </head>
 <body>
 <div class="demo">SIMULACIÓN · Bueyes de ejemplo</div>
-<header class="top">
-  <a class="marca" href="index.html">Casa Manjavacas<small>Etiquetas de producto</small></a>
-  <nav><a href="panel.html">Panel</a><a href="registrar.html">Registrar evento</a><a class="activo" href="etiquetas.html">Etiquetas</a><a href="precios.html">Precios</a></nav>
-</header>
-<main>
+<a class="salto" href="#contenido">Saltar al contenido</a>
+<header data-cabecera="ganadero"></header>
+<main id="contenido">
   <h1>Etiquetas para las piezas</h1>
   <p class="sub">Elige el buey, apunta cada pieza con su peso e imprime en A4. Cada etiqueta lleva el QR a la ficha de ese buey. Ocho etiquetas por hoja.</p>
   <div class="trabajo">
@@ -70,6 +69,8 @@ LAYOUT: formulario a la izquierda, vista previa de la hoja a la derecha.
     <div class="vista" id="vista"></div>
   </div>
 </main>
+<footer data-pie></footer>
+<script src="assets/layout.js"></script>
 <script src="assets/qrcode.js"></script>
 <script src="data/bueyes.js"></script>
 <script src="data/config.js"></script>

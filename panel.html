@@ -15,6 +15,7 @@
 <meta name="theme-color" content="#7a2e2a">
 <link rel="apple-touch-icon" href="assets/icono-180.png">
 <link rel="stylesheet" href="assets/estilo.css">
+<link rel="stylesheet" href="assets/comun.css">
 <style>
 .agenda{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:12px;margin:10px 0}
 .mes{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
@@ -27,11 +28,9 @@
 </head>
 <body>
 <div class="demo">SIMULACIÓN · Así se verá en junio de 2033 (Año 6 del plan) · Animales de ejemplo</div>
-<header class="top">
-  <a class="marca" href="index.html">Casa Manjavacas<small>Panel del ganadero</small></a>
-  <nav><a href="index.html">Inicio</a><a class="activo" href="panel.html">Panel</a><a href="registrar.html">Registrar evento</a><a href="etiquetas.html">Etiquetas</a><a href="precios.html">Precios</a><a href="inversores.html">Inversores</a></nav>
-</header>
-<main>
+<a class="salto" href="#contenido">Saltar al contenido</a>
+<header data-cabecera="ganadero"></header>
+<main id="contenido">
   <h1>Panel de trazabilidad</h1>
   <p class="sub">Cada buey, desde que entra en la explotación hasta la pieza madurada que llega al cliente.</p>
   <div class="kpis" id="kpis"></div>
@@ -46,6 +45,8 @@
   </table></div>
   <p class="nota">Esta herramienta complementa la trazabilidad oficial obligatoria (crotales, documento de identificación bovina y registro en SITRAN); no la sustituye.</p>
 </main>
+<footer data-pie></footer>
+<script src="assets/layout.js"></script>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true">
   <div class="caja">

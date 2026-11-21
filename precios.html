@@ -8,6 +8,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="assets/estilo.css">
+<link rel="stylesheet" href="assets/comun.css">
 <style>
 /*
 VOICE: herramienta de cálculo para el ganadero, directa.
@@ -37,11 +38,9 @@ LAYOUT: datos a la izquierda, resultado grande a la derecha.
 </head>
 <body>
 <div class="demo">Herramienta interna · Reparto según despieces publicados de vacuno: ajústalo con el despiece real de tu buey</div>
-<header class="top">
-  <a class="marca" href="index.html">Casa Manjavacas<small>Calculadora de precios</small></a>
-  <nav><a href="panel.html">Panel</a><a href="etiquetas.html">Etiquetas</a><a class="activo" href="precios.html">Precios</a><a href="inversores.html">Inversores</a></nav>
-</header>
-<main>
+<a class="salto" href="#contenido">Saltar al contenido</a>
+<header data-cabecera="ganadero"></header>
+<main id="contenido">
   <h1>¿A cuánto vender cada pieza?</h1>
   <p class="sub">El plan cuenta con 55 € por kilo de canal. Esta calculadora reparte ese objetivo entre las piezas del buey y te dice a qué precio por kilo hay que vender cada tipo de pieza para llegar.</p>
   <div class="calc">
@@ -70,6 +69,8 @@ LAYOUT: datos a la izquierda, resultado grande a la derecha.
     </div>
   </div>
 </main>
+<footer data-pie></footer>
+<script src="assets/layout.js"></script>
 <script>
 {
   // Reparto por defecto según despieces comerciales publicados (porcentaje de la canal, pasado a porcentaje de la carne):

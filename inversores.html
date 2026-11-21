@@ -12,6 +12,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="assets/marca.css">
+<link rel="stylesheet" href="assets/comun.css">
 <style>
 /*
 VOICE: informe financiero serio, como la sección de gráficos de un buen periódico.
@@ -88,18 +89,16 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
 @media (max-width:600px){.promotor{grid-template-columns:1fr}.pasos90{grid-template-columns:1fr}}
 @media (max-width:900px){.sim{grid-template-columns:1fr}.ruta{grid-template-columns:1fr 1fr}.claves{grid-template-columns:1fr}}
 @media (max-width:600px){.esc th,.esc td{padding:10px 6px;font-size:13px}.ruta{grid-template-columns:1fr}.barras .fila{grid-template-columns:minmax(0,1fr) 6em;}.barras .pista{grid-column:1/-1;order:3}.fig{min-height:300px}}
-@media print{.nav,.aviso,.ctrl{display:none}body.papel{background:#fff}}
+@media print{.cabecera,.pie-web,.aviso,.ctrl{display:none}body.papel{background:#fff}}
 </style>
 </head>
 <body class="papel">
 <div class="aviso">Documento para inversores · Previsiones del modelo económico, no resultados</div>
-<header class="nav">
-  <a class="logo" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="#9e3222" stroke-width="1.5"/><path d="M7 15c3 4 7 5 13 5s10-1 13-5" fill="none" stroke="#9e3222" stroke-width="1.8" stroke-linecap="round"/><path d="M9 30l7-9 4 4 4-6 7 11z" fill="#9e3222"/></svg>Casa Manjavacas</a>
-  <nav><a href="#promotor">Promotor</a><a href="#negocio">Negocio</a><a href="#simulador">Simulador</a><a href="#mercado">Mercado</a><a href="#riesgos">Riesgos</a><a href="#ruta">Hoja de ruta</a><a class="cta" href="Casa_Manjavacas_Dossier_Inversores.pdf" download>Descargar dossier</a></nav>
-</header>
+<a class="salto" href="#contenido">Saltar al contenido</a>
+<header data-cabecera="inversores"></header>
 
-<section class="band" style="padding-bottom:20px">
-  <div class="in">
+<section class="band" style="padding-bottom:20px" id="contenido">
+  <div class="in revela">
     <p class="nota" style="margin:0 0 10px">Sala de inversores · Plan actual, escenario Base</p>
     <h1><span style="white-space:nowrap">30.000 €</span> hoy. Unos <span style="white-space:nowrap">69.500 €</span> de vuelta hasta 2043.</h1>
     <p class="lead">Un negocio pequeño a propósito: unos cinco bueyes de Rubia Gallega al año, criados cinco años en la Montaña Palentina y vendidos como producto gourmet. El inversor entra en 2030-2031 y cobra un porcentaje del resultado, sin devolución final.</p>
@@ -109,7 +108,7 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
 </section>
 
 <section class="band" id="promotor" style="padding-top:20px">
-  <div class="in panel promotor">
+  <div class="in revela panel promotor">
     <div class="avatar" aria-hidden="true">CE</div>
     <div>
       <p class="nota" style="margin:0">Quién está detrás</p>
@@ -132,7 +131,7 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
 </section>
 
 <section class="band" id="negocio" style="padding-top:20px">
-  <div class="in">
+  <div class="in revela">
     <h2>El negocio, año a año</h2>
     <p class="lead">Cinco años de inversión y crianza antes de vender el primer buey propio. Después, el precio sube por escalones hasta 55 €/kg canal y el resultado se estabiliza por encima de 73.000 € al año.</p>
     <div class="panel">
@@ -143,7 +142,7 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
 </section>
 
 <section class="band" style="padding-top:0">
-  <div class="in">
+  <div class="in revela">
     <h2>Lo que cobra el inversor</h2>
     <p class="lead">Un 23 % del resultado hasta recuperar lo aportado y un 10 % después, hasta el Año 15. Los pagos se cobran en junio del año siguiente.</p>
     <div class="panel">
@@ -155,7 +154,7 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
 
 
 <section class="band" style="padding-top:0">
-  <div class="in">
+  <div class="in revela">
     <h2>Cómo crece</h2>
     <p class="lead">El precio sube por escalones mientras la marca se da a conocer. Desde el Año 8 entran vacas propias para criar terneros de Rubia Gallega en casa.</p>
     <div class="tri">
@@ -168,7 +167,7 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
 </section>
 
 <section class="band" id="simulador" style="padding-top:0">
-  <div class="in">
+  <div class="in revela">
     <h2>Pruébalo tú: precio y bueyes</h2>
     <p class="lead">Mueve el precio de venta y los bueyes vendidos al año. Calcula el Año 11, con el negocio ya en marcha, con la misma fórmula del modelo.</p>
     <div class="panel sim">
@@ -190,7 +189,7 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
 </section>
 
 <section class="band" style="padding-top:0">
-  <div class="in">
+  <div class="in revela">
     <h2>La cuenta de un buey</h2>
     <p class="lead">Lo que deja cada buey vendido en el Año 11. Por debajo de 22,5 €/kg canal el negocio perdería dinero; el plan vende a 55.</p>
     <div class="panel barras" id="cuenta"></div>
@@ -199,7 +198,7 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
 
 
 <section class="band" id="mercado" style="padding-top:0">
-  <div class="in">
+  <div class="in revela">
     <h2>¿Es realista vender a 55 €/kg?</h2>
     <p class="lead">Es la gran pregunta del plan. El precio es por kilo de canal, que incluye hueso y cortes de menos valor. Pasado a carne vendida son unos 82 €/kg: el precio del buey de verdad en el mercado gourmet, muy por encima de la carne de vacuno corriente.</p>
     <div class="panel barras" id="mercado-barras"></div>
@@ -208,7 +207,7 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
 </section>
 
 <section class="band" id="escenarios" style="padding-top:0">
-  <div class="in">
+  <div class="in revela">
     <h2>Si las cosas van peor</h2>
     <p class="lead">El precio es lo que más mueve el resultado y todavía no está confirmado. Por eso el plan se ha calculado también con precios más bajos.</p>
     <div class="panel scroll"><table class="esc" id="tabla-esc"></table></div>
@@ -218,7 +217,7 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
 
 
 <section class="band" id="riesgos" style="padding-top:0">
-  <div class="in">
+  <div class="in revela">
     <h2>Qué puede fallar y qué se hace</h2>
     <p class="lead">Los puntos débiles del plan, dichos claramente, y la medida prevista para cada uno.</p>
     <div class="riesgos">
@@ -231,7 +230,7 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
 </section>
 
 <section class="band" style="padding-top:0">
-  <div class="in">
+  <div class="in revela">
     <h2>Y si sale mejor</h2>
     <p class="lead">Tres medidas que el modelo ha calculado una a una. Usan supuestos sin confirmar: son el margen de mejora, no la base del plan.</p>
     <div class="panel scroll"><table class="esc" id="tabla-medidas"></table></div>
@@ -239,14 +238,14 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
 </section>
 
 <section class="band" id="ruta" style="padding-top:0">
-  <div class="in">
+  <div class="in revela">
     <h2>Hoja de ruta 2027-2042</h2>
     <ul class="ruta" id="hitos"></ul>
   </div>
 </section>
 
 <section class="band" style="padding-top:0">
-  <div class="in">
+  <div class="in revela">
     <h2>Por qué este modelo</h2>
     <div class="claves">
       <div><strong>Poco producto, mucho margen.</strong><p>Cerca del 50 % de margen sobre ingresos desde el Año 11 con unos cinco bueyes al año.</p></div>
@@ -256,12 +255,8 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
   </div>
 </section>
 
-<footer>
-  <div class="in">
-    <span>Casa Manjavacas · Montaña Palentina</span>
-    <span>Previsiones del modelo económico del promotor, no datos reales: ningún precio de venta está confirmado. Esta página no es una oferta de inversión; las condiciones son las del contrato.</span>
-  </div>
-</footer>
+<footer data-pie></footer>
+<script src="assets/layout.js"></script>
 
 <script src="assets/modelo.js"></script>
 <script src="assets/app.js"></script>

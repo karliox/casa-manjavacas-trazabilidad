@@ -12,21 +12,14 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="description" content="Buey de ceba extensiva de raza Rubia Gallega, criado cinco años en la Montaña Palentina. Cada pieza con su historia.">
 <link rel="stylesheet" href="assets/marca.css">
+<link rel="stylesheet" href="assets/comun.css">
 </head>
 <body>
 <div class="aviso">Proyecto en desarrollo · Demostración con datos de ejemplo</div>
-<header class="nav">
-  <a class="logo" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="#d4a85a" stroke-width="1.5"/><path d="M7 15c3 4 7 5 13 5s10-1 13-5" fill="none" stroke="#d4a85a" stroke-width="1.8" stroke-linecap="round"/><path d="M9 30l7-9 4 4 4-6 7 11z" fill="#d4a85a"/></svg>Casa Manjavacas</a>
-  <nav>
-    <a href="la-carne.html">La carne</a>
-    <a href="#trazabilidad">Trazabilidad</a>
-    <a href="club.html">Club</a>
-    <a href="panel.html">Panel</a>
-    <a class="cta" href="inversores.html">Inversores</a>
-  </nav>
-</header>
+<a class="salto" href="#contenido">Saltar al contenido</a>
+<header data-cabecera="publica"></header>
 
-<section class="hero">
+<section class="hero" id="contenido">
   <div id="paisaje-hero"></div>
   <div class="texto">
     <h1>Cinco años en la montaña. Un buey en tu mesa.</h1>
@@ -38,15 +31,15 @@
   </div>
 </section>
 
-<section class="band">
-  <div class="in">
+<section class="band sube">
+  <div class="in revela">
     <div class="cifras" id="cifras"></div>
     <p class="nota" style="margin-top:12px">Cifras por buey según el plan de negocio de Casa Manjavacas.</p>
   </div>
 </section>
 
 <section class="band" id="proceso" style="padding-top:0">
-  <div class="in">
+  <div class="in revela">
     <h2>Del monte a la mesa, sin atajos</h2>
     <p class="lead">La ternera y el añojo de carnicería viven menos de dos años. Un buey de Casa Manjavacas pasa unos cinco en la explotación, casi todos al aire libre.</p>
     <div class="proceso" id="pasos"></div>
@@ -54,7 +47,7 @@
 </section>
 
 <section class="band" id="trazabilidad" style="background:var(--noche2)">
-  <div class="in duo">
+  <div class="in revela duo">
     <div>
       <h2>Cada pieza lleva su historia</h2>
       <p class="lead">La etiqueta trae un código QR. El cliente lo escanea y ve a su buey: cuándo llegó, cuántos años pastó, cuándo se sacrificó y cuántos días maduró.</p>
@@ -86,7 +79,7 @@
 </section>
 
 <section class="band" id="club">
-  <div class="in club">
+  <div class="in revela club">
     <div>
       <h2>Club de clientes fundadores</h2>
       <p class="lead">Seis plazas. Cuota única de 2.500 € y, del quinto al noveno año, la primera carne de la casa: 120 kg al año repartidos entre los seis socios.</p>
@@ -106,12 +99,8 @@
   </div>
 </section>
 
-<footer>
-  <div class="in">
-    <span>Casa Manjavacas · Montaña Palentina · <a href="la-carne.html">La carne</a> · <a href="club.html">Club</a> · <a href="restaurantes.html">Restaurantes</a> · <a href="inversores.html">Inversores</a> · <a href="panel.html">Panel</a></span>
-    <span>Demostración: los animales y fechas son ejemplos. La trazabilidad oficial obligatoria (crotales, DIB y SITRAN) se mantiene aparte.</span>
-  </div>
-</footer>
+<footer data-pie></footer>
+<script src="assets/layout.js"></script>
 
 <script src="assets/qrcode.js"></script>
 <script src="assets/paisaje.js"></script>
@@ -130,7 +119,7 @@
   document.getElementById("cifras").innerHTML = cifras.map(([v, t]) => `<div class="cifra"><b>${v}</b><span>${t}</span></div>`).join("");
 
   const iconos = [
-    '<circle cx="32" cy="32" r="30" fill="none" stroke="#d4a85a" stroke-width="1.5"/><path d="M18 38c2-6 8-8 14-8h8c4 0 7 2 8 5l-2 6h-3l-1 5h-3l-1-5H28l-1 5h-3l-1-6c-3-1-5-1-5-2z" fill="#d4a85a"/>',
+    '<circle cx="32" cy="32" r="30" fill="none" stroke="#d4a85a" stroke-width="1.5"/><g transform="translate(15 21) scale(.29)" fill="#d4a85a"><path d="M14 20c2-6 10-8 22-8h44c8 0 13 3 15 8l2 6c0 5-2 9-6 11l-1 3v28h-6l-2-24h-6l-2 24h-6l-1-26H44l-2 26h-6l-1-24h-5l-2 24h-6V40c-5-3-7-9-6-15l-4 18-3-1 4-19c0-1 1-2 1-3z"/><path d="M92 14c2-3 6-5 10-4l8 2c3 1 5 4 5 7l-1 9c-1 3-4 5-7 4l-7-1c-4-1-7-5-8-9z"/><path d="M102 11c-1-5 2-9 7-10-3 3-4 6-3 10zM110 12c3-4 7-5 10-4-4 0-6 2-7 5z"/></g>',
     '<circle cx="32" cy="32" r="30" fill="none" stroke="#d4a85a" stroke-width="1.5"/><path d="M12 44l12-16 7 8 6-10 15 18z" fill="#6f8b4f"/><path d="M37 26l3 5-3-1-3 2z" fill="#f3eadb"/>',
     '<circle cx="32" cy="32" r="30" fill="none" stroke="#d4a85a" stroke-width="1.5"/><path d="M32 16v22M24 24c0 6 3 10 8 12M40 24c0 6-3 10-8 12M27 18c0 4 2 7 5 8M37 18c0 4-2 7-5 8" stroke="#d4a85a" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M20 44h24" stroke="#d4a85a" stroke-width="2"/>',
     '<circle cx="32" cy="32" r="30" fill="none" stroke="#d4a85a" stroke-width="1.5"/><rect x="20" y="16" width="24" height="32" rx="3" fill="none" stroke="#d4a85a" stroke-width="2"/><path d="M24 24h16M24 30h16M24 36h10" stroke="#c2412d" stroke-width="2"/><circle cx="40" cy="42" r="2" fill="#d4a85a"/>',

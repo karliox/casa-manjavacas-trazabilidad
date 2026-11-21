@@ -13,7 +13,8 @@ LAYOUT: bandas a todo ancho; héroe con el paisaje ocupando media pantalla; cont
 }
 *{box-sizing:border-box;min-width:0}
 html{scroll-behavior:smooth;scroll-padding-top:72px;overflow-x:clip}
-body{margin:0;background:var(--noche);color:var(--crema);font:16px/1.6 var(--sans);overflow-x:clip}
+body{margin:0;background:var(--noche);color:var(--crema);font:16px/1.6 var(--sans);overflow-x:clip;-webkit-font-smoothing:antialiased}
+::selection{background:#c2412d;color:#fff}
 a{color:var(--oro)}
 img,svg{display:block}
 .aviso{background:#0b0908;color:var(--tenue);font-size:13px;text-align:center;padding:7px 14px}
@@ -38,8 +39,12 @@ h1{font-size:clamp(38px,5.6vw,72px)} h2{font-size:clamp(30px,3.6vw,46px)} h3{fon
 .nota{font-size:13px;color:var(--tenue)}
 
 /* Héroe con paisaje */
-.hero{position:relative;min-height:min(92vh,860px);display:flex;align-items:flex-start;overflow:hidden}
+.hero{position:relative;min-height:min(90vh,840px);display:flex;align-items:flex-start;overflow:hidden}
+.band.sube{margin-top:clamp(-110px,-8vw,-48px);position:relative;z-index:3;padding-top:0}
+.sube .cifras{box-shadow:0 30px 60px rgba(0,0,0,.45);backdrop-filter:blur(6px)}
+.sube .cifra{background:rgba(30,25,21,.92)}
 .hero .paisaje{position:absolute;inset:0;width:100%;height:100%}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,rgba(18,14,12,.62) 0%,rgba(18,14,12,.35) 40%,rgba(18,14,12,0) 68%);pointer-events:none}
 .hero .texto{position:relative;z-index:2;padding:clamp(56px,10vh,120px) max(5vw,16px) 0;max-width:1240px;margin:0 auto;width:100%}
 .hero h1{max-width:760px;text-shadow:0 2px 30px rgba(0,0,0,.35)}
 .niebla{animation:niebla 38s ease-in-out infinite alternate}

@@ -11,6 +11,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="assets/marca.css">
+<link rel="stylesheet" href="assets/comun.css">
 <style>
 .carta{justify-self:center;width:min(380px,100%);background:#f6efe2;color:#1d1814;border-radius:6px;padding:32px 28px;box-shadow:0 24px 60px rgba(0,0,0,.5);font-family:var(--serif);position:relative}
 .carta::before{content:"";position:absolute;inset:10px;border:1px solid #cdbfa8;border-radius:3px;pointer-events:none}
@@ -35,13 +36,11 @@
 </head>
 <body>
 <div class="aviso">Proyecto en desarrollo · Primeras piezas previstas a partir de 2029</div>
-<header class="nav">
-  <a class="logo" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="#d4a85a" stroke-width="1.5"/><path d="M7 15c3 4 7 5 13 5s10-1 13-5" fill="none" stroke="#d4a85a" stroke-width="1.8" stroke-linecap="round"/><path d="M9 30l7-9 4 4 4-6 7 11z" fill="#d4a85a"/></svg>Casa Manjavacas</a>
-  <nav><a href="index.html">Inicio</a><a href="la-carne.html">La carne</a><a class="cta" href="#contacto">Hablemos</a></nav>
-</header>
+<a class="salto" href="#contenido">Saltar al contenido</a>
+<header data-cabecera="publica"></header>
 
-<section class="band">
-  <div class="in duo">
+<section class="band" id="contenido">
+  <div class="in revela duo">
     <div>
       <p class="nota" style="margin:0 0 10px;color:var(--oro)">PARA RESTAURANTES</p>
       <h1>Un buey con nombre en tu carta.</h1>
@@ -59,7 +58,7 @@
 </section>
 
 <section class="band" style="padding-top:0">
-  <div class="in">
+  <div class="in revela">
     <h2>Lo que le da a tu carta</h2>
     <div class="ventajas">
       <div><h3>Una historia que contar</h3><p>No es «chuletón de buey»: es el chuletón de un animal con nombre, con su ficha y sus fechas. El camarero tiene algo que contar y el cliente algo que enseñar.</p></div>
@@ -70,7 +69,7 @@
 </section>
 
 <section class="band" style="padding-top:0">
-  <div class="in">
+  <div class="in revela">
     <h2>Qué podemos servirte</h2>
     <p class="lead">Formatos orientativos. Se ajustan a lo que necesite tu cocina.</p>
     <table class="formato">
@@ -86,7 +85,7 @@
 </section>
 
 <section class="band" id="contacto" style="padding-top:0">
-  <div class="in">
+  <div class="in revela">
     <div class="reserva-caja">
       <h2>Hablemos</h2>
       <p class="lead">Buscamos los primeros restaurantes. Déjanos tus datos y te contamos plazos, piezas y precios.</p>
@@ -105,12 +104,8 @@
   </div>
 </section>
 
-<footer>
-  <div class="in">
-    <span>Casa Manjavacas · Montaña Palentina · <a href="la-carne.html">La carne</a> · <a href="club.html">Club</a></span>
-    <span>Proyecto en desarrollo. Plazos y formatos se confirman por escrito.</span>
-  </div>
-</footer>
+<footer data-pie></footer>
+<script src="assets/layout.js"></script>
 
 <script src="assets/qrcode.js"></script>
 <script src="data/bueyes.js"></script>

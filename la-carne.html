@@ -11,6 +11,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="assets/marca.css">
+<link rel="stylesheet" href="assets/comun.css">
 <style>
 .tres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:30px}
 .tarjeta{border:1px solid var(--linea);border-radius:18px;padding:24px;background:var(--noche2)}
@@ -33,13 +34,11 @@
 </head>
 <body>
 <div class="aviso">Proyecto en desarrollo</div>
-<header class="nav">
-  <a class="logo" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="#d4a85a" stroke-width="1.5"/><path d="M7 15c3 4 7 5 13 5s10-1 13-5" fill="none" stroke="#d4a85a" stroke-width="1.8" stroke-linecap="round"/><path d="M9 30l7-9 4 4 4-6 7 11z" fill="#d4a85a"/></svg>Casa Manjavacas</a>
-  <nav><a href="index.html">Inicio</a><a href="club.html">Club</a><a class="cta" href="ficha.html?id=CM-001">Ver un buey</a></nav>
-</header>
+<a class="salto" href="#contenido">Saltar al contenido</a>
+<header data-cabecera="publica"></header>
 
-<section class="band">
-  <div class="in">
+<section class="band" id="contenido">
+  <div class="in revela">
     <h1 style="max-width:900px">Tiempo, pasto y frío. Así se hace un buey.</h1>
     <p class="lead">Tres decisiones explican el sabor de la carne de Casa Manjavacas: criar bueyes y no terneras, elegir la Rubia Gallega y madurar la carne en seco.</p>
     <div class="tres">
@@ -51,7 +50,7 @@
 </section>
 
 <section class="band" style="padding-top:0">
-  <div class="in">
+  <div class="in revela">
     <h2>Ternera de carnicería y buey, frente a frente</h2>
     <table class="comparar">
       <thead><tr><th></th><th>Ternera de carnicería</th><th>Buey Casa Manjavacas</th></tr></thead>
@@ -67,7 +66,7 @@
 </section>
 
 <section class="band" style="padding-top:0">
-  <div class="in">
+  <div class="in revela">
     <h2>Qué pasa en la cámara de maduración</h2>
     <p class="lead">Las piezas reposan colgadas o en bandeja en una cámara fría, con humedad y aire controlados. Las enzimas de la propia carne ablandan la fibra mientras el aire seca la superficie y concentra el sabor. La costra seca exterior se recorta antes de cortar los filetes.</p>
     <div class="camara">
@@ -103,7 +102,7 @@
 </section>
 
 <section class="band" style="padding-top:0">
-  <div class="in duo">
+  <div class="in revela duo">
     <div>
       <h2>Cómo cocinarlo</h2>
       <p class="lead">Una carne así pide poco: sacarla de la nevera una hora antes, fuego muy fuerte, sal gorda al final y unos minutos de reposo antes de cortar.</p>
@@ -113,12 +112,8 @@
   </div>
 </section>
 
-<footer>
-  <div class="in">
-    <span>Casa Manjavacas · Montaña Palentina</span>
-    <span>Proyecto en desarrollo.</span>
-  </div>
-</footer>
+<footer data-pie></footer>
+<script src="assets/layout.js"></script>
 <script src="data/bueyes.js"></script>
 <script src="assets/app.js"></script>
 <script>
