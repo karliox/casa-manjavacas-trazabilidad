@@ -17,6 +17,7 @@ La web está en **https://karliox.github.io/casa-manjavacas-trazabilidad/** y se
 | `precios.html` | Calculadora: a qué precio vender cada tipo de pieza para llegar al objetivo por kilo de canal |
 | `inversores.html` | Sala de inversores con las cifras del modelo |
 | `presentacion.html` | Modo presentación para la reunión (flechas o deslizar) |
+| `Casa_Manjavacas_Resumen.pdf` | Resumen de una página para dejar en la reunión (se genera desde `resumen.html`) |
 | `Casa_Manjavacas_Dossier_Inversores.pdf` | Dossier descargable (se genera desde `dossier.html`) |
 
 ## Cambiar los animales: hoja de Google

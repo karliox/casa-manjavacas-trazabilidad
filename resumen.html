@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Resumen para inversores · Casa Manjavacas</title>
+<style>
+/*
+VOICE: la hoja que se deja sobre la mesa; todo lo esencial de un vistazo.
+IDEA: ficha técnica de una sola cara, como la etiqueta de un vino de guarda.
+PICTURE: banda de paisaje arriba y la curva de cobro del inversor.
+COLOUR and TYPE: papel crema, tinta noche, brasa y oro; Fraunces + Inter.
+LAYOUT: A4 vertical, dos columnas bajo la cabecera.
+*/
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap");
+@page{size:A4;margin:0}
+*{box-sizing:border-box}
+body{margin:0;background:#ddd;font:9.6pt/1.45 "Inter",system-ui,sans-serif;color:#1d1814}
+.hoja{width:210mm;height:297mm;margin:0 auto;background:#f8f3ea;position:relative;overflow:hidden}
+.cab{height:62mm;position:relative;background:#14110f;color:#f3eadb}
+.cab svg{position:absolute;inset:0;width:100%;height:100%}
+.cab .t{position:relative;padding:11mm 14mm}
+.marca{font-family:"Fraunces",Georgia,serif;font-size:11pt;letter-spacing:.08em;color:#d4a85a}
+h1{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:25pt;line-height:1.08;margin:4mm 0 2mm;max-width:150mm}
+.cab p{margin:0;color:#e8d8c4;max-width:140mm;font-size:10pt}
+.cuerpo{display:grid;grid-template-columns:1.05fr 1fr;gap:8mm;padding:8mm 14mm 0}
+h2{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:13.5pt;margin:0 0 2mm;color:#9e3222}
+h2+p,h2+ul{margin-top:0}
+ul{margin:0 0 4mm;padding-left:4mm}li{margin:1mm 0}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:2.5mm;margin-bottom:4mm}
+.kpi{background:#fffaf2;border:1px solid #e2d6c4;border-radius:2.5mm;padding:2.5mm 3mm}
+.kpi b{display:block;font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:15pt;line-height:1.1}
+.kpi span{font-size:8pt;color:#5a4d42}
+.kpi.d{background:#1d1814;color:#f3eadb;border-color:#1d1814}.kpi.d b{color:#d4a85a}.kpi.d span{color:#cdbda6}
+.fig{background:#fffaf2;border:1px solid #e2d6c4;border-radius:2.5mm;padding:2mm;margin-bottom:4mm}
+.fig svg{width:100%;height:auto;display:block}
+table{width:100%;border-collapse:collapse;font-size:8.6pt;margin-bottom:4mm}
+td,th{white-space:nowrap;padding:1.3mm 1.5mm;border-bottom:1px solid #e2d6c4;text-align:right}
+td:first-child,th:first-child{text-align:left;white-space:normal}th{font-weight:500;color:#5a4d42}
+.pie{position:absolute;left:14mm;right:14mm;bottom:9mm;display:flex;align-items:center;gap:5mm;border-top:1px solid #e2d6c4;padding-top:4mm;font-size:8.4pt;color:#5a4d42}
+.pie .qr{width:20mm;height:20mm;flex:none}.pie .qr svg{width:100%;height:100%}
+.pie b{color:#1d1814}
+@media print{body{background:none}.hoja{margin:0}}
+</style>
+</head>
+<body>
+<div class="hoja">
+  <div class="cab">
+    <div id="paisaje"></div>
+    <div class="t">
+      <div class="marca">CASA MANJAVACAS</div>
+      <h1>Buey de la Montaña Palentina</h1>
+      <p>Rubia Gallega, unos cinco años en la montaña y madurado en seco. Unos cinco bueyes al año vendidos como producto gourmet, cada uno con su ficha de trazabilidad.</p>
+    </div>
+  </div>
+  <div class="cuerpo">
+    <div>
+      <h2>La propuesta</h2>
+      <p>30.000 € en dos tramos (5.000 € en 2030 y 25.000 € en 2031) a cambio de un 23 % del resultado de explotación hasta recuperar lo aportado y un 10 % después, hasta el Año 15. Sin devolución final: se recupera con los pagos.</p>
+      <div class="kpis">
+        <div class="kpi d"><b>69.545 €</b><span>cobrados en total</span></div>
+        <div class="kpi"><b>2,3 veces</b><span>lo aportado</span></div>
+        <div class="kpi"><b>10,0 %</b><span>TIR anual</span></div>
+        <div class="kpi"><b>2038</b><span>lo aportado, de vuelta</span></div>
+      </div>
+      <h2>Lo que cobra el inversor</h2>
+      <div class="fig" id="g"></div>
+      <h2>El negocio</h2>
+      <ul>
+        <li>Terneros de Rubia Gallega: unos cuatro años de pasto extensivo y un año de engorde final. 493 kg de canal por buey.</li>
+        <li>Precio por escalones hasta 55 €/kg de canal en el Año 11. Resultado por encima de 73.000 € al año desde entonces.</li>
+        <li>Club de seis clientes fundadores, venta directa y restaurantes de alta gama. Cámara de maduración propia desde el Año 8.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Escenarios</h2>
+      <table id="esc"></table>
+      <h2>Riesgos y medidas</h2>
+      <ul>
+        <li><b>Precio sin confirmar.</b> 55 €/kg de canal son unos 82 €/kg de carne. Preventa y club antes de crecer; sin 24 €/kg en el Año 7, no se compran vacas.</li>
+        <li><b>Ayuda de joven agricultor (70.000 €) sin conceder.</b> No se arrancan las inversiones grandes sin resolución.</li>
+        <li><b>Inversiones sin presupuesto.</b> Instalaciones (51.300 €) y cámara (25.000 €): presupuestos firmados antes de empezar.</li>
+      </ul>
+      <h2>Hoja de ruta</h2>
+      <table>
+        <tr><td>2027</td><td style="text-align:left">Arranque: instalaciones y primeros terneros</td></tr>
+        <tr><td>2029</td><td style="text-align:left">Club de clientes fundadores</td></tr>
+        <tr><td>2030-31</td><td style="text-align:left">Entran los inversores</td></tr>
+        <tr><td>2032</td><td style="text-align:left">Primeros bueyes propios</td></tr>
+        <tr><td>2035</td><td style="text-align:left">Cámara propia y primeras vacas</td></tr>
+        <tr><td>2036</td><td style="text-align:left">Primer pago a los inversores</td></tr>
+        <tr><td>2042</td><td style="text-align:left">Fin del acuerdo (Año 15)</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="pie">
+    <div class="qr" id="qr"></div>
+    <div><b>Carlos Espeso Manjavacas</b> · Promotor<br>Sala de inversores, simulador y dossier completo: karliox.github.io/casa-manjavacas-trazabilidad/inversores.html<br>Previsiones del modelo económico, no resultados. No es una oferta de inversión: las condiciones son las del contrato.</div>
+  </div>
+</div>
+<script src="assets/qrcode.js"></script>
+<script src="assets/paisaje.js"></script>
+<script src="assets/modelo.js"></script>
+<script>
+{
+  const M = MODELO, eur = n => Math.round(n).toLocaleString("es-ES", { useGrouping: "always" }) + " €";
+  document.getElementById("paisaje").outerHTML = paisajeSVG({ bueyes: [[1250, 716, 1], [1400, 735, -1]] });
+  const q = qrcode(0, "M"); q.addData("https://karliox.github.io/casa-manjavacas-trazabilidad/inversores.html"); q.make();
+  document.getElementById("qr").innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+  const W = 340, H = 140, mL = 30, mR = 6, mT = 8, mB = 16, n = 17, iw = W - mL - mR, ih = H - mT - mB;
+  const min = -30000, max = 75000, y = v => mT + (max - v) / (max - min) * ih, bw = iw / n, x = i => mL + i * bw;
+  const fl = Array(n).fill(0); fl[3] = -5000; fl[4] = -25000; M.pagoInversores.forEach((p, i) => { if (p) fl[i + 1] += p; });
+  let a = 0; const ac = fl.map((f, i) => { if (f > 0) a += f; return i >= 9 ? a : null; });
+  let g = "";
+  [-30000, 0, 30000, 60000].forEach(t => g += `<line x1="${mL}" x2="${W - mR}" y1="${y(t)}" y2="${y(t)}" stroke="${t ? "#e2d6c4" : "#1d1814"}" stroke-width=".6"/><text x="${mL - 3}" y="${y(t) + 3}" text-anchor="end" font-size="7" fill="#7a6b5d">${t / 1000} k</text>`);
+  fl.forEach((v, i) => { if (v) g += `<rect x="${x(i) + bw * .2}" y="${y(Math.max(v, 0))}" width="${bw * .6}" height="${Math.abs(y(v) - y(0))}" fill="${v < 0 ? "#c2412d" : "#d4a85a"}"/>`; });
+  [0, 4, 8, 12, 16].forEach(i => g += `<text x="${x(i) + bw / 2}" y="${H - 4}" text-anchor="middle" font-size="7" fill="#5a4d42">${2027 + i}</text>`);
+  g += `<line x1="${mL}" x2="${W - mR}" y1="${y(30000)}" y2="${y(30000)}" stroke="#c2412d" stroke-dasharray="3 3" stroke-width=".8"/>`;
+  g += `<polyline fill="none" stroke="#1d1814" stroke-width="1.6" points="${ac.map((v, i) => v == null ? "" : `${x(i) + bw / 2},${y(v)}`).join(" ")}"/>`;
+  g += `<text x="${x(16) + bw / 2}" y="${y(ac[16]) - 5}" text-anchor="end" font-size="8" font-weight="600">${eur(M.cobradoInversores[15])}</text>`;
+  document.getElementById("g").innerHTML = `<svg viewBox="0 0 ${W} ${H}">${g}</svg>`;
+  document.getElementById("esc").innerHTML = `<tr><th></th>${M.escenarios.map(e => `<th>${e.nombre}</th>`).join("")}</tr>` +
+    [["Precio final (€/kg)", e => e.precio.toLocaleString("es-ES")], ["Cobran los inversores", e => eur(e.reciben)], ["Veces lo aportado", e => e.veces.toLocaleString("es-ES", { maximumFractionDigits: 1 })], ["Recuperan", e => e.recuperan]]
+    .map(([k, f]) => `<tr><td>${k}</td>${M.escenarios.map(e => `<td>${f(e)}</td>`).join("")}</tr>`).join("");
+}
+</script>
+</body>
+</html>
