@@ -13,6 +13,7 @@ La web está en **https://karliox.github.io/casa-manjavacas-trazabilidad/** y se
 | `panel.html` | Panel del ganadero |
 | `registrar.html` | Apuntar eventos desde el móvil (solo se guardan en ese móvil) |
 | `etiquetas.html` | Imprimir etiquetas A4 con QR para cada pieza |
+| `precios.html` | Calculadora: a qué precio vender cada tipo de pieza para llegar al objetivo por kilo de canal |
 | `inversores.html` | Sala de inversores con las cifras del modelo |
 | `presentacion.html` | Modo presentación para la reunión (flechas o deslizar) |
 | `Casa_Manjavacas_Dossier_Inversores.pdf` | Dossier descargable (se genera desde `dossier.html`) |
@@ -35,3 +36,11 @@ En `data/config.js`:
 ## Cifras de inversores
 
 Todas salen de `assets/modelo.js`, copiadas de `Casa_Manjavacas_Modelo_completo.xlsx` (Plan actual). Si cambias el Excel, hay que actualizar ese archivo y volver a generar el PDF.
+
+## Instalar el panel en el móvil
+
+Abre `panel.html` en el móvil → menú del navegador → **Añadir a pantalla de inicio**. Se abre como una app.
+
+## Buscadores
+
+Las páginas de inversores, dossier, presentación, panel, registro, etiquetas y precios llevan `noindex`: Google no las muestra en sus resultados, aunque cualquiera con el enlace puede abrirlas.

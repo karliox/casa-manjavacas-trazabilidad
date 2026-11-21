@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Calculadora de precios · Casa Manjavacas</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="assets/estilo.css">
+<style>
+/*
+VOICE: herramienta de cálculo para el ganadero, directa.
+IDEA: la pizarra de precios de una carnicería, calculada hacia atrás desde el objetivo del plan.
+PICTURE: la canal repartida en una barra por categorías, con el precio que necesita cada una.
+COLOUR and TYPE: los del panel; cifras en serif grande.
+LAYOUT: datos a la izquierda, resultado grande a la derecha.
+*/
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+.cat{display:grid;grid-template-columns:minmax(0,1fr) 92px 92px;gap:8px;align-items:end;margin-bottom:10px}
+.cat label{margin:0 0 4px;font-size:13px}
+.cat input{font-size:16px}
+.cab{display:grid;grid-template-columns:minmax(0,1fr) 92px 92px;gap:8px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:16px 0 6px}
+.barra{display:flex;height:44px;border-radius:10px;overflow:hidden;margin:14px 0}
+.barra i{display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-style:normal;white-space:nowrap;overflow:hidden}
+.res{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+.res table{width:100%;border-collapse:collapse}
+.res td,.res th{padding:10px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+.res td:first-child,.res th:first-child{text-align:left;white-space:normal}
+.res th{font-size:12px;color:var(--muted);font-weight:500}
+.res .grande{font-family:var(--serif);font-size:30px;color:var(--vino)}
+.check{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:15px}
+.check.ok{background:#e7eedf;color:var(--verde)}.check.mal{background:#f3dfdc;color:var(--vino)}
+@media (max-width:900px){.calc{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:600px){.cat,.cab{grid-template-columns:minmax(0,1fr) 64px 64px}.res td,.res th{padding:8px 4px;font-size:13px;white-space:normal}.res{padding:14px}}
+</style>
+</head>
+<body>
+<div class="demo">Herramienta interna · Repartos orientativos: ajústalos con tu despiece real</div>
+<header class="top">
+  <a class="marca" href="index.html">Casa Manjavacas<small>Calculadora de precios</small></a>
+  <nav><a href="panel.html">Panel</a><a href="etiquetas.html">Etiquetas</a><a class="activo" href="precios.html">Precios</a><a href="inversores.html">Inversores</a></nav>
+</header>
+<main>
+  <h1>¿A cuánto vender cada pieza?</h1>
+  <p class="sub">El plan cuenta con 55 € por kilo de canal. Esta calculadora reparte ese objetivo entre las piezas del buey y te dice a qué precio por kilo hay que vender cada tipo de pieza para llegar.</p>
+  <div class="calc">
+    <form class="card" id="f" style="max-width:none">
+      <label for="canal">Kilos de canal por buey</label>
+      <input id="canal" type="number" step="1" value="493">
+      <label for="carne">Kilos de carne vendible por buey</label>
+      <input id="carne" type="number" step="0.5" value="330.5">
+      <label for="objetivo">Precio objetivo (€ por kilo de canal)</label>
+      <input id="objetivo" type="number" step="1" value="55">
+      <div class="cab"><span>Tipo de pieza</span><span>% carne</span><span>Precio ×</span></div>
+      <div id="cats"></div>
+      <p class="nota">«Precio ×» es cuánto más cara es cada categoría que la más barata. Con 4, la pieza noble vale cuatro veces lo que la carne de guiso.</p>
+      <p><button type="button" class="btn sec" id="reset">Volver a los valores iniciales</button></p>
+    </form>
+    <div>
+      <div class="res">
+        <p style="margin:0;color:var(--muted)">Lo que tiene que dejar cada buey</p>
+        <div class="grande" id="total"></div>
+        <div class="barra" id="barra"></div>
+        <div class="scroll"><table id="tabla"></table></div>
+        <div class="check" id="check"></div>
+      </div>
+      <p class="nota">Valores iniciales: 493 kg de canal y 330,5 kg de carne, como en el modelo económico. El reparto entre categorías y los multiplicadores son orientativos: pídele a tu carnicero o al matadero el despiece real de un buey y cámbialos aquí.</p>
+    </div>
+  </div>
+</main>
+<script>
+{
+  const INICIAL = [
+    { n: "Piezas nobles (chuletón, lomo, solomillo, entrecot)", p: 22, x: 4, c: "#7a2e2a" },
+    { n: "Piezas de primera (redondo, babilla, picaña…)", p: 28, x: 2, c: "#b58a4a" },
+    { n: "Piezas de segunda (filetes, asado)", p: 20, x: 1.4, c: "#4f6b45" },
+    { n: "Guiso, picada y hamburguesa", p: 30, x: 1, c: "#7a6a5d" }
+  ];
+  let cats = JSON.parse(JSON.stringify(INICIAL));
+  const eur = n => n.toLocaleString("es-ES", { maximumFractionDigits: 0, useGrouping: "always" }) + " €";
+  const eur2 = n => n.toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  function form() {
+    document.getElementById("cats").innerHTML = cats.map((k, i) => `<div class="cat">
+      <div><label for="n${i}">${esc(k.n)}</label></div>
+      <input id="p${i}" type="number" min="0" max="100" step="1" value="${k.p}" aria-label="% de carne: ${esc(k.n)}">
+      <input id="x${i}" type="number" min="0.1" step="0.1" value="${k.x}" aria-label="Multiplicador de precio: ${esc(k.n)}"></div>`).join("");
+    cats.forEach((k, i) => {
+      document.getElementById("p" + i).addEventListener("input", e => { k.p = +e.target.value || 0; calc(); });
+      document.getElementById("x" + i).addEventListener("input", e => { k.x = +e.target.value || 0; calc(); });
+    });
+  }
+  function calc() {
+    const canal = +document.getElementById("canal").value || 0, carne = +document.getElementById("carne").value || 0, obj = +document.getElementById("objetivo").value || 0;
+    const total = canal * obj, sumP = cats.reduce((s, k) => s + k.p, 0);
+    const kg = cats.map(k => carne * k.p / (sumP || 1));
+    const base = total / (kg.reduce((s, v, i) => s + v * cats[i].x, 0) || 1);
+    document.getElementById("total").textContent = eur(total);
+    document.getElementById("barra").innerHTML = cats.map((k, i) => `<i style="width:${k.p / (sumP || 1) * 100}%;background:${k.c}">${Math.round(k.p / (sumP || 1) * 100)} %</i>`).join("");
+    document.getElementById("tabla").innerHTML = `<tr><th>Tipo de pieza</th><th>Kilos</th><th>Precio por kg</th><th>Ingreso</th></tr>` +
+      cats.map((k, i) => `<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${k.c};margin-right:6px"></span>${esc(k.n)}</td><td>${kg[i].toFixed(1).replace(".", ",")}</td><td><strong>${eur2(base * k.x)}</strong></td><td>${eur(kg[i] * base * k.x)}</td></tr>`).join("") +
+      `<tr><td><strong>Media por kilo de carne</strong></td><td>${carne.toFixed(1).replace(".", ",")}</td><td><strong>${eur2(total / (carne || 1))}</strong></td><td>${eur(total)}</td></tr>`;
+    const noble = base * cats[0].x, ch = document.getElementById("check");
+    if (Math.abs(sumP - 100) > 0.5) { ch.className = "check mal"; ch.textContent = `Los porcentajes suman ${sumP} %. Tienen que sumar 100 %.`; return; }
+    ch.className = "check " + (noble <= 100 ? "ok" : "mal");
+    ch.textContent = noble <= 100
+      ? `La pieza noble saldría a ${eur2(noble)}/kg: en la franja del chuletón de buey de calidad (de unos 70 a 100 €/kg en tienda).`
+      : `La pieza noble tendría que venderse a ${eur2(noble)}/kg: por encima de lo que se ve en tienda (unos 70-100 €/kg). Habría que subir el precio de las otras piezas, vender más a restaurantes o bajar el objetivo.`;
+  }
+  ["canal", "carne", "objetivo"].forEach(id => document.getElementById(id).addEventListener("input", calc));
+  document.getElementById("reset").addEventListener("click", () => {
+    cats = JSON.parse(JSON.stringify(INICIAL));
+    document.getElementById("canal").value = 493; document.getElementById("carne").value = 330.5; document.getElementById("objetivo").value = 55;
+    form(); calc();
+  });
+  form(); calc();
+}
+</script>
+</body>
+</html>
