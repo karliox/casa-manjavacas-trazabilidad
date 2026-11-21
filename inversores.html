@@ -11,6 +11,8 @@
 <meta property="og:image" content="https://karliox.github.io/casa-manjavacas-trazabilidad/assets/og.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="assets/marca.css">
 <link rel="stylesheet" href="assets/comun.css">
 <style>
@@ -69,6 +71,10 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
 .claves p{margin:4px 0 0;color:#4f443a;font-size:15px}
 .papel footer{border-top-color:#e2d6c4;color:#7a6b5d}
 .scroll{overflow-x:auto}
+.portada-inv{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.graf-portada{margin:0}.graf-portada figcaption{display:flex;flex-direction:column;gap:2px;margin-bottom:8px}.graf-portada figcaption span{font-size:13px;color:#7a6b5d}
+.graf-portada .fig{min-height:300px}
+@media (max-width:900px){.portada-inv{grid-template-columns:1fr}}
 .tri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
 .tri .panel{margin-top:0}.tri h3{font-size:19px;margin:0 0 2px}.tri p{margin:0 0 6px;font-size:14px;color:#5a4d42}
 .tri .fig{min-height:220px}
@@ -99,11 +105,19 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
 
 <section class="band" style="padding-bottom:20px" id="contenido">
   <div class="in revela">
-    <p class="nota" style="margin:0 0 10px">Sala de inversores · Plan actual, escenario Base</p>
-    <h1><span style="white-space:nowrap">30.000 €</span> hoy. Unos <span style="white-space:nowrap">69.500 €</span> de vuelta hasta 2043.</h1>
-    <p class="lead">Un negocio pequeño a propósito: unos cinco bueyes de Rubia Gallega al año, criados cinco años en la Montaña Palentina y vendidos como producto gourmet. El inversor entra en 2030-2031 y cobra un porcentaje del resultado, sin devolución final.</p>
+    <div class="portada-inv">
+      <div>
+        <p class="nota" style="margin:0 0 10px">Sala de inversores · Plan actual, escenario Base</p>
+        <h1><span style="white-space:nowrap">30.000 €</span> hoy. Unos <span style="white-space:nowrap">69.500 €</span> de vuelta hasta 2043.</h1>
+        <p class="lead">Un negocio pequeño a propósito: unos cinco bueyes de Rubia Gallega al año, criados cinco años en la Montaña Palentina y vendidos como producto gourmet. El inversor entra en 2030-2031 y cobra un porcentaje del resultado, sin devolución final.</p>
+        <div class="botones"><a class="btn descarga" href="Casa_Manjavacas_Dossier_Inversores.pdf" download>Descargar el dossier en PDF</a><a class="btn sec" style="color:#1d1814;box-shadow:inset 0 0 0 1px #1d1814" href="Casa_Manjavacas_Resumen.pdf" download>Resumen de una página</a><a class="btn sec" style="color:#1d1814;box-shadow:inset 0 0 0 1px #1d1814" href="presentacion.html">Modo presentación</a><a class="btn sec" style="color:#1d1814;box-shadow:inset 0 0 0 1px #1d1814" href="index.html">Ver la marca</a></div>
+      </div>
+      <figure class="panel graf-portada">
+        <figcaption><strong>Lo que cobra el inversor</strong><span>Un 23 % del resultado hasta recuperar lo aportado y un 10 % después, hasta el Año 15. Se cobra en junio del año siguiente. Rojo: aportación; dorado: pago del año; línea: cobrado acumulado.</span></figcaption>
+        <div class="fig" id="g-portada"></div>
+      </figure>
+    </div>
     <div class="kpis" id="kpis"></div>
-    <div class="botones"><a class="btn descarga" href="Casa_Manjavacas_Dossier_Inversores.pdf" download>Descargar el dossier en PDF</a><a class="btn sec" style="color:#1d1814;box-shadow:inset 0 0 0 1px #1d1814" href="Casa_Manjavacas_Resumen.pdf" download>Resumen de una página</a><a class="btn sec" style="color:#1d1814;box-shadow:inset 0 0 0 1px #1d1814" href="presentacion.html">Modo presentación</a><a class="btn sec" style="color:#1d1814;box-shadow:inset 0 0 0 1px #1d1814" href="index.html">Ver la marca</a></div>
   </div>
 </section>
 
@@ -141,16 +155,7 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
   </div>
 </section>
 
-<section class="band" style="padding-top:0">
-  <div class="in revela">
-    <h2>Lo que cobra el inversor</h2>
-    <p class="lead">Un 23 % del resultado hasta recuperar lo aportado y un 10 % después, hasta el Año 15. Los pagos se cobran en junio del año siguiente.</p>
-    <div class="panel">
-      <div class="fig" id="g-inversor"></div>
-      <div class="leyenda"><span><i style="background:#c2412d"></i>Aportación</span><span><i style="background:#d4a85a"></i>Pago del año</span><span><i style="background:#1d1814;height:3px;width:20px"></i>Cobrado acumulado</span></div>
-    </div>
-  </div>
-</section>
+
 
 
 <section class="band" style="padding-top:0">
@@ -320,7 +325,7 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
         g += `<text x="${mL - 6}" y="${y(t) + 4}" text-anchor="end" font-size="12" fill="#7a6b5d">${fmtK(t)}</text>`;
       }
       g += `<line x1="${mL}" x2="${W - mR}" y1="${y(30000)}" y2="${y(30000)}" stroke="#c2412d" stroke-dasharray="5 5"/>`;
-      g += `<text x="${mL + 8}" y="${y(30000) - 7}" font-size="12" fill="#9e3222">Lo aportado: 30.000 €</text>`;
+      g += `<text x="${W - mR - 4}" y="${y(30000) + 16}" text-anchor="end" font-size="12" fill="#9e3222">Lo aportado: 30.000 €</text>`;
       flujo.forEach((v, i) => {
         if (v) g += `<rect x="${x(i) + bw * .2}" y="${y(Math.max(v, 0))}" width="${bw * .6}" height="${Math.abs(y(v) - y(0))}" rx="2" fill="${v < 0 ? "#c2412d" : "#d4a85a"}"><title>${anioNat(i)}: ${eur(v)}</title></rect>`;
         if (!est || i % 3 === 0) g += `<text x="${x(i) + bw / 2}" y="${H - 8}" text-anchor="middle" font-size="12" fill="#5a4d42">${est ? "'" + String(anioNat(i)).slice(2) : anioNat(i)}</text>`;
@@ -336,7 +341,7 @@ table.esc{width:100%;border-collapse:collapse;font-size:15px}
     new ResizeObserver(draw).observe(s);
   }
   grafNegocio(document.getElementById("g-negocio"));
-  grafInversor(document.getElementById("g-inversor"));
+  grafInversor(document.getElementById("g-portada"));
 
   // Simulador (fórmula de la hoja «Sensibilidad»)
   const sp = document.getElementById("s-precio"), sb = document.getElementById("s-bueyes");

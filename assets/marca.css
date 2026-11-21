@@ -154,3 +154,21 @@ footer .in{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-betwe
   .qrcaja{flex-direction:column;align-items:flex-start}
 }
 @media (prefers-reduced-motion:reduce){.niebla{animation:none}html{scroll-behavior:auto}}
+
+/* Tres caminos */
+.caminos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+.camino{position:relative;display:flex;flex-direction:column;gap:8px;padding:28px 26px 24px;border:1px solid var(--linea);border-radius:20px;background:linear-gradient(180deg,rgba(243,234,219,.03),rgba(243,234,219,0));color:var(--crema);text-decoration:none;transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.camino:hover{transform:translateY(-3px);border-color:rgba(212,168,90,.55);background:linear-gradient(180deg,rgba(212,168,90,.08),rgba(243,234,219,0))}
+.camino .num{font:500 13px var(--sans);color:var(--oro);letter-spacing:.08em}
+.camino h3{margin:4px 0 0;font-size:24px}
+.camino p{margin:0;color:var(--crema2);flex:1}
+.camino .flecha{margin-top:10px;color:var(--oro);font-weight:500}
+@media (max-width:900px){.caminos{grid-template-columns:1fr}}
+/* Detalles al pasar el ratón */
+.corte,.tarjeta,.ventajas div,.grande div,.dato{transition:border-color .2s ease,transform .2s ease}
+.corte:hover,.tarjeta:hover,.ventajas div:hover{border-color:rgba(212,168,90,.45);transform:translateY(-2px)}
+.btn{transition:background .2s ease,transform .15s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(194,65,45,.25)}
+.btn.sec:hover{box-shadow:none}
+.hero h1{letter-spacing:-.01em}
+h2{letter-spacing:-.005em}
