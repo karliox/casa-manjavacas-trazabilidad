@@ -52,6 +52,17 @@ html,body{height:100%;overflow:hidden}
 .ruta5 div.inv{border-top-color:var(--brasa)}
 .ruta5 b{font-family:var(--serif);font-weight:400;font-size:clamp(26px,2.6vw,36px);display:block}
 .ruta5 p{margin:4px 0 0;color:var(--crema2);font-size:15px}
+.diapo-graf{justify-content:flex-start;padding-top:clamp(28px,5vh,60px)}
+.diapo-graf h2{font-size:clamp(26px,3.2vw,44px);margin-bottom:6px}
+.diapo-graf .graf{flex:1;min-height:0;max-height:none;display:flex;align-items:center;margin-top:10px}
+.diapo-graf .graf svg{width:100%;height:auto;max-height:62vh}
+.diapo-graf .nota{margin:8px 0 0;max-width:1100px}
+.indice-anexo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:26px;max-width:1100px}
+.indice-anexo a{display:block;border:1px solid var(--linea);border-radius:14px;padding:18px;background:rgba(30,25,21,.7);color:var(--crema);text-decoration:none;transition:border-color .2s ease}
+.indice-anexo a:hover{border-color:var(--oro)}
+.indice-anexo b{display:block;font-family:var(--serif);font-weight:400;font-size:22px}
+.indice-anexo span{color:var(--crema2);font-size:14px}
+@media (max-width:800px){.indice-anexo{grid-template-columns:1fr}}
 .controles{position:fixed;right:20px;bottom:18px;display:flex;gap:8px;z-index:5}
 .controles button{width:48px;height:48px;border-radius:50%;border:1px solid var(--linea);background:rgba(20,17,15,.8);color:var(--crema);font-size:20px;cursor:pointer}
 .controles button:focus-visible{outline:2px solid var(--oro)}
@@ -154,6 +165,9 @@ html,body{height:100%;overflow:hidden}
 <script src="data/bueyes.js"></script>
 <script src="assets/app.js"></script>
 <script src="assets/modelo.js"></script>
+<script src="data/presentacion_datos.js"></script>
+<script src="assets/graficos.js"></script>
+<script src="assets/anexo.js"></script>
 <script>
 {
   const M = MODELO, eur = CM.eur, an = i => M.anioCero + i;
@@ -205,6 +219,13 @@ html,body{height:100%;overflow:hidden}
     if (["ArrowRight", "PageDown", " "].includes(e.key)) { e.preventDefault(); ir(i + 1); }
     if (["ArrowLeft", "PageUp"].includes(e.key)) { e.preventDefault(); ir(i - 1); }
     if (e.key === "Home") ir(0); if (e.key === "End") ir(ds.length - 1);
+  });
+  document.addEventListener("click", e => {
+    const a = e.target.closest && e.target.closest("[data-ir]");
+    if (!a) return;
+    e.preventDefault();
+    const destino = document.querySelector(`.diapo[data-anexo="${a.dataset.ir}"]`);
+    ir(ds.indexOf(destino));
   });
   let x0 = null;
   addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });

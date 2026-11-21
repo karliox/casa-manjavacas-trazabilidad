@@ -16,7 +16,7 @@ La web está en **https://karliox.github.io/casa-manjavacas-trazabilidad/** y se
 | `etiquetas.html` | Imprimir etiquetas A4 con QR para cada pieza |
 | `precios.html` | Calculadora: a qué precio vender cada tipo de pieza para llegar al objetivo por kilo de canal |
 | `inversores.html` | Sala de inversores con las cifras del modelo |
-| `presentacion.html` | Modo presentación para la reunión (flechas o deslizar) |
+| `presentacion.html` | Modo presentación: 10 diapositivas principales y un anexo de 40 gráficos con las cifras del modelo (`assets/anexo.js`, datos en `data/presentacion_datos.js`) |
 | `Casa_Manjavacas_Resumen.pdf` | Resumen de una página para dejar en la reunión (se genera desde `resumen.html`) |
 | `Casa_Manjavacas_Dossier_Inversores.pdf` | Dossier descargable (se genera desde `dossier.html`) |
 
