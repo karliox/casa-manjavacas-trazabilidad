@@ -51,3 +51,7 @@ Las páginas de inversores, dossier, presentación, panel, registro, etiquetas y
 ## Presentar
 
 En `presentacion.html`: flechas o deslizar para pasar, **N** abre las notas del presentador con cronómetro, **Fin** va al final y el índice del anexo salta a cada bloque de gráficos.
+
+## Correos
+
+Borradores para la ayuda de joven agricultor, el despiece real y los restaurantes: `docs/correos.md`.
