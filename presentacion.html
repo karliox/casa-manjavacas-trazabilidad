@@ -25,7 +25,8 @@ LAYOUT: diapositivas a pantalla completa, flechas y barra de progreso.
 html,body{height:100%;overflow:hidden}
 .diapo{position:fixed;inset:0;display:flex;flex-direction:column;justify-content:center;padding:clamp(24px,6vw,96px);opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s}
 .diapo.activa{opacity:1;visibility:visible}
-.diapo .paisaje{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.diapo .paisaje{position:absolute;inset:0;width:100%;height:100%;z-index:-2}
+.diapo[data-paisaje]::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(18,14,12,.7) 0%,rgba(18,14,12,.4) 45%,rgba(18,14,12,0) 75%)}
 .diapo h1{font-size:clamp(44px,7vw,96px)}
 .diapo h2{font-size:clamp(34px,4.6vw,64px);max-width:1100px}
 .diapo .lead{font-size:clamp(17px,1.8vw,24px);max-width:900px}
@@ -63,11 +64,24 @@ html,body{height:100%;overflow:hidden}
 .indice-anexo b{display:block;font-family:var(--serif);font-weight:400;font-size:22px}
 .indice-anexo span{color:var(--crema2);font-size:14px}
 @media (max-width:800px){.indice-anexo{grid-template-columns:1fr}}
+.notas{position:fixed;left:20px;bottom:64px;z-index:6;width:min(460px,calc(100vw - 40px));max-height:52vh;overflow:auto;background:rgba(10,8,7,.94);border:1px solid rgba(212,168,90,.45);border-radius:16px;padding:16px 18px;box-shadow:0 20px 50px rgba(0,0,0,.5);font-size:15px}
+.notas-cab{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:var(--oro)}
+.notas-cab span{font-variant-numeric:tabular-nums;color:var(--crema)}
+.notas ul{margin:0;padding-left:18px}.notas li{margin:6px 0;color:var(--crema)}
+.notas-sig{margin:10px 0 0;color:var(--tenue);font-size:13px}
 .controles{position:fixed;right:20px;bottom:18px;display:flex;gap:8px;z-index:5}
 .controles button{width:48px;height:48px;border-radius:50%;border:1px solid var(--linea);background:rgba(20,17,15,.8);color:var(--crema);font-size:20px;cursor:pointer}
 .controles button:focus-visible{outline:2px solid var(--oro)}
 .progreso{position:fixed;left:0;bottom:0;height:3px;background:var(--brasa);transition:width .3s;z-index:5}
 .contador{position:fixed;left:20px;bottom:22px;font-size:13px;color:var(--tenue);z-index:5}
+@page{size:1600px 900px;margin:0}
+@media print{
+  html,body{height:auto;overflow:visible;background:#14110f;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .diapo{position:relative;z-index:0;inset:auto;width:1600px;height:900px;opacity:1;visibility:visible;transition:none;page-break-after:always;break-after:page;overflow:hidden}
+  .diapo-graf .graf svg{max-height:560px}
+  .graf{max-height:none}
+  .controles,.progreso,.contador,.notas{display:none!important}
+}
 @media (max-width:800px){.lista4,.ruta5{grid-template-columns:1fr}.mbar .f{grid-template-columns:minmax(0,1fr) 5.5em}.mbar .p{grid-column:1/-1;order:3}.diapo{overflow-y:auto;justify-content:flex-start;padding-top:40px;padding-bottom:90px}}
 @media (prefers-reduced-motion:reduce){.diapo{transition:none}}
 </style>
@@ -154,7 +168,13 @@ html,body{height:100%;overflow:hidden}
 
 <div class="contador" id="contador"></div>
 <div class="progreso" id="progreso"></div>
+<aside class="notas" id="notas" aria-live="polite" hidden>
+  <div class="notas-cab"><b>Notas del presentador</b><span id="crono">00:00</span></div>
+  <ul id="notas-lista"></ul>
+  <p class="notas-sig" id="notas-sig"></p>
+</aside>
 <div class="controles">
+  <button id="btn-notas" aria-label="Notas del presentador (tecla N)" title="Notas (N)">✎</button>
   <button id="pant" aria-label="Pantalla completa">⛶</button>
   <button id="ant" aria-label="Anterior">←</button>
   <button id="sig" aria-label="Siguiente">→</button>
@@ -202,13 +222,37 @@ html,body{height:100%;overflow:hidden}
 
   const ds = [...document.querySelectorAll(".diapo")];
   let i = 0;
-  const ir = n => {
+  let ir = n => {
     i = Math.max(0, Math.min(ds.length - 1, n));
     ds.forEach((d, k) => d.classList.toggle("activa", k === i));
     document.getElementById("progreso").style.width = ((i + 1) / ds.length * 100) + "%";
     document.getElementById("contador").textContent = (i + 1) + " / " + ds.length;
     try { history.replaceState(null, "", "#d" + (i + 1)); } catch (e) {}
   };
+
+  // Notas del presentador (tecla N)
+  const NOTAS = [["Preséntate en una frase: quién eres y qué es Casa Manjavacas.", "La idea en 10 segundos: buey de Rubia Gallega, cinco años en la Montaña Palentina, pocos animales y muy caros.", "No des cifras todavía. Unos 30 segundos."], ["La diferencia está en el tiempo: la ternera de carnicería vive menos de dos años; nuestro buey, unos cinco.", "Recorre las cinco etapas sin detenerte: llega de ternero, cuatro años de monte, un año de engorde, cámara y mesa.", "Mensaje: escaso, lento y difícil de copiar. 1 minuto."], ["Pídeles que saquen el móvil y escaneen el QR. Espera a que lo abran.", "Diles que eso es lo que verá el cliente en cada pieza: la historia de su buey.", "Es el argumento que sostiene el precio gourmet. 1-2 minutos."], ["La propuesta en una frase: 30.000 € en 2030-2031 y unos 69.500 € de vuelta hasta 2043.", "Explica el reparto: 23 % del resultado hasta recuperar y 10 % después, hasta el Año 15. Sin devolución final.", "Di claro que se empieza a cobrar con el resultado de 2035. 1 minuto."], ["Cinco años de crianza con pérdidas pequeñas; desde 2038, más de 73.000 € de resultado al año.", "El peor momento de caja es 2028, con −1.649 €: ten preparada la respuesta (colchón o póliza).", "1 minuto."], ["Señala el punto en que se recupera lo aportado: con el resultado de 2037, cobrado en junio de 2038.", "Después siguen cobrando un 10 % hasta 2043.", "Si preguntan por la TIR: 10,0 % en el Base."], ["Es la pregunta clave: 55 €/kg de canal son unos 82 €/kg de carne.", "Compara con el chuletón de buey en tienda (70-100 €/kg) y en restaurante (169 €/kg en Madrid).", "Reconoce que no está confirmado: por eso la primera medida es la preventa y el club."], ["Cuenta los riesgos antes de que te los pregunten. Da confianza.", "Precio sin confirmar, ayuda de joven agricultor sin conceder, inversiones sin presupuesto.", "Cierra con el conservador: aun así cobran 1,3 veces lo aportado."], ["Recorre la hoja de ruta de izquierda a derecha, sin leerla entera.", "Marca los tres momentos del inversor: entra en 2030-31, primer pago en 2036, recupera en 2038.", "Si sale la ayuda: la próxima convocatoria puede mover el Año 0."], ["Agradece y abre preguntas.", "Si te piden cifras, salta al anexo: la tecla Fin te lleva al final y desde el índice del anexo vas al bloque que te pidan.", "Deja el resumen de una página y el enlace del dossier."]];
+  const panel = document.getElementById("notas");
+  let t0 = null, reloj = null;
+  const pintarNotas = () => {
+    const d = ds[i], k = d.dataset.anexo;
+    const lista = k == null ? (NOTAS[i] || ["Índice del anexo: pulsa un bloque para ir a sus gráficos."]) : ["Usa este gráfico solo si te preguntan por este tema.", d.querySelector(".nota") ? d.querySelector(".nota").textContent.replace(/ Fuente:.*/, "") : ""];
+    document.getElementById("notas-lista").innerHTML = lista.filter(Boolean).map(x => `<li>${x}</li>`).join("");
+    const sig = ds[i + 1] && ds[i + 1].querySelector("h1,h2");
+    document.getElementById("notas-sig").textContent = sig ? "Siguiente: " + sig.textContent : "Última diapositiva";
+  };
+  const toggleNotas = () => {
+    panel.hidden = !panel.hidden;
+    if (!panel.hidden) {
+      pintarNotas();
+      if (!t0) { t0 = Date.now(); reloj = setInterval(() => { const s = Math.floor((Date.now() - t0) / 1000); document.getElementById("crono").textContent = String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0"); }, 1000); }
+    }
+  };
+  document.getElementById("btn-notas").addEventListener("click", toggleNotas);
+  addEventListener("keydown", e => { if (e.key === "n" || e.key === "N") toggleNotas(); });
+  const irOriginal = ir;
+  ir = n => { irOriginal(n); if (!panel.hidden) pintarNotas(); };
+
   const desdeHash = () => { const m = /^#d(\d+)$/.exec(location.hash); return m ? +m[1] - 1 : 0; };
   ir(desdeHash());
   addEventListener("hashchange", () => { const n = desdeHash(); if (n !== i) ir(n); });
