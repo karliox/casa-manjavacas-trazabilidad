@@ -36,7 +36,7 @@ LAYOUT: datos a la izquierda, resultado grande a la derecha.
 </style>
 </head>
 <body>
-<div class="demo">Herramienta interna · Repartos orientativos: ajústalos con tu despiece real</div>
+<div class="demo">Herramienta interna · Reparto según despieces publicados de vacuno: ajústalo con el despiece real de tu buey</div>
 <header class="top">
   <a class="marca" href="index.html">Casa Manjavacas<small>Calculadora de precios</small></a>
   <nav><a href="panel.html">Panel</a><a href="etiquetas.html">Etiquetas</a><a class="activo" href="precios.html">Precios</a><a href="inversores.html">Inversores</a></nav>
@@ -65,17 +65,21 @@ LAYOUT: datos a la izquierda, resultado grande a la derecha.
         <div class="scroll"><table id="tabla"></table></div>
         <div class="check" id="check"></div>
       </div>
-      <p class="nota">Valores iniciales: 493 kg de canal y 330,5 kg de carne, como en el modelo económico. El reparto entre categorías y los multiplicadores son orientativos: pídele a tu carnicero o al matadero el despiece real de un buey y cámbialos aquí.</p>
+      <p class="nota">Valores iniciales: 493 kg de canal y 330,5 kg de carne, como en el modelo económico. El reparto sigue despieces comerciales publicados de vacuno español: el CITA de Aragón da en torno a un 2 % de Extra, un 41-49 % de Primera, un 6-8 % de Segunda y un 18-22 % de Tercera sobre la canal; un despiece de Semark para supermercados LUPA da un 2 % de solomillo y un 10,5 % de chuleta. Son terneros, no bueyes: pide el despiece real de un buey y ajústalo. Los multiplicadores de precio son una estimación tuya que cambiar.</p>
+<p class="nota">Fuentes: <a href="https://citarea.cita-aragon.es/bitstream/10532/1032/1/10532-108_10.pdf" target="_blank" rel="noopener">CITA de Aragón, razas autóctonas</a> · <a href="https://chil.me//download-doc/136684" target="_blank" rel="noopener">Rendimiento al envasado, Semark/LUPA</a></p>
     </div>
   </div>
 </main>
 <script>
 {
+  // Reparto por defecto según despieces comerciales publicados (porcentaje de la canal, pasado a porcentaje de la carne):
+  // solomillo ≈2 %, chuleta ≈10,5 %, resto de Primera ≈36 %, Segunda ≈7,5 %, Tercera ≈21,5 % de la canal.
   const INICIAL = [
-    { n: "Piezas nobles (chuletón, lomo, solomillo, entrecot)", p: 22, x: 4, c: "#7a2e2a" },
-    { n: "Piezas de primera (redondo, babilla, picaña…)", p: 28, x: 2, c: "#b58a4a" },
-    { n: "Piezas de segunda (filetes, asado)", p: 20, x: 1.4, c: "#4f6b45" },
-    { n: "Guiso, picada y hamburguesa", p: 30, x: 1, c: "#7a6a5d" }
+    { n: "Solomillo (categoría Extra)", p: 3, x: 4, c: "#5c201d" },
+    { n: "Chuletón y lomo", p: 13, x: 3.5, c: "#7a2e2a" },
+    { n: "Resto de Primera (tapa, babilla, cadera, contra, redondo, aguja)", p: 47, x: 1.8, c: "#b58a4a" },
+    { n: "Segunda (filetes de segunda, asado)", p: 10, x: 1.3, c: "#4f6b45" },
+    { n: "Tercera (guiso, picada, hamburguesa)", p: 27, x: 1, c: "#7a6a5d" }
   ];
   let cats = JSON.parse(JSON.stringify(INICIAL));
   const eur = n => n.toLocaleString("es-ES", { maximumFractionDigits: 0, useGrouping: "always" }) + " €";
@@ -97,16 +101,16 @@ LAYOUT: datos a la izquierda, resultado grande a la derecha.
     const kg = cats.map(k => carne * k.p / (sumP || 1));
     const base = total / (kg.reduce((s, v, i) => s + v * cats[i].x, 0) || 1);
     document.getElementById("total").textContent = eur(total);
-    document.getElementById("barra").innerHTML = cats.map((k, i) => `<i style="width:${k.p / (sumP || 1) * 100}%;background:${k.c}">${Math.round(k.p / (sumP || 1) * 100)} %</i>`).join("");
+    document.getElementById("barra").innerHTML = cats.map((k, i) => `<i style="width:${k.p / (sumP || 1) * 100}%;background:${k.c}">${k.p / (sumP || 1) >= .06 ? Math.round(k.p / (sumP || 1) * 100) + " %" : ""}</i>`).join("");
     document.getElementById("tabla").innerHTML = `<tr><th>Tipo de pieza</th><th>Kilos</th><th>Precio por kg</th><th>Ingreso</th></tr>` +
       cats.map((k, i) => `<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${k.c};margin-right:6px"></span>${esc(k.n)}</td><td>${kg[i].toFixed(1).replace(".", ",")}</td><td><strong>${eur2(base * k.x)}</strong></td><td>${eur(kg[i] * base * k.x)}</td></tr>`).join("") +
       `<tr><td><strong>Media por kilo de carne</strong></td><td>${carne.toFixed(1).replace(".", ",")}</td><td><strong>${eur2(total / (carne || 1))}</strong></td><td>${eur(total)}</td></tr>`;
-    const noble = base * cats[0].x, ch = document.getElementById("check");
+    const noble = base * cats[1].x, ch = document.getElementById("check");
     if (Math.abs(sumP - 100) > 0.5) { ch.className = "check mal"; ch.textContent = `Los porcentajes suman ${sumP} %. Tienen que sumar 100 %.`; return; }
     ch.className = "check " + (noble <= 100 ? "ok" : "mal");
     ch.textContent = noble <= 100
-      ? `La pieza noble saldría a ${eur2(noble)}/kg: en la franja del chuletón de buey de calidad (de unos 70 a 100 €/kg en tienda).`
-      : `La pieza noble tendría que venderse a ${eur2(noble)}/kg: por encima de lo que se ve en tienda (unos 70-100 €/kg). Habría que subir el precio de las otras piezas, vender más a restaurantes o bajar el objetivo.`;
+      ? `El chuletón saldría a ${eur2(noble)}/kg: en la franja del chuletón de buey de calidad (de unos 70 a 100 €/kg en tienda).`
+      : `El chuletón tendría que venderse a ${eur2(noble)}/kg y la carne de Tercera a ${eur2(base)}/kg: por encima de lo que se ve en tienda (chuletón de buey de unos 70 a 100 €/kg). Casi la mitad de la carne es de Primera sin ser chuletón, así que todo el buey tiene que venderse caro: vender más a restaurantes, elaborados de valor o bajar el objetivo.`;
   }
   ["canal", "carne", "objetivo"].forEach(id => document.getElementById(id).addEventListener("input", calc));
   document.getElementById("reset").addEventListener("click", () => {
