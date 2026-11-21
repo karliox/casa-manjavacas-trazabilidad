@@ -8,6 +8,7 @@ La web está en **https://karliox.github.io/casa-manjavacas-trazabilidad/** y se
 |---|---|
 | `index.html` | Portada de la marca |
 | `la-carne.html` | Por qué buey, Rubia Gallega y maduración |
+| `restaurantes.html` | Propuesta para restaurantes de alta gama, con formulario de contacto |
 | `club.html` | Club de fundadores y formulario de reserva |
 | `ficha.html?id=CM-001` | Ficha pública de cada buey (a la que lleva el QR) |
 | `panel.html` | Panel del ganadero |
