@@ -15,6 +15,15 @@
 <meta name="theme-color" content="#7a2e2a">
 <link rel="apple-touch-icon" href="assets/icono-180.png">
 <link rel="stylesheet" href="assets/estilo.css">
+<style>
+.agenda{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:12px;margin:10px 0}
+.mes{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.mes h3{font-size:18px;margin:0 0 8px}
+.mes ul{list-style:none;margin:0;padding:0}
+.mes li{display:grid;grid-template-columns:10px 1fr;gap:8px;align-items:start;font-size:14px;margin:6px 0}
+.mes li i{width:10px;height:10px;border-radius:50%;margin-top:5px}
+.t-engorde{background:#b58a4a}.t-sacrificio{background:var(--vino)}.t-camara{background:#7a6a5d}.t-fija{background:var(--verde)}
+</style>
 </head>
 <body>
 <div class="demo">SIMULACIÓN · Así se verá en junio de 2033 (Año 6 del plan) · Animales de ejemplo</div>
@@ -26,6 +35,10 @@
   <h1>Panel de trazabilidad</h1>
   <p class="sub">Cada buey, desde que entra en la explotación hasta la pieza madurada que llega al cliente.</p>
   <div class="kpis" id="kpis"></div>
+  <h2>Próximos 12 meses</h2>
+  <p class="sub">Calculado para cada buey a partir de su fecha de llegada: unos cuatro años de pasto, un año de engorde final, sacrificio y maduración. Más las tareas fijas del año.</p>
+  <div class="agenda" id="agenda"></div>
+  <p class="nota">Plazos orientativos del plan. Ajústalos a cómo vaya cada animal.</p>
   <h2>Animales</h2>
   <div class="scroll"><table class="tabla">
     <thead><tr><th>ID</th><th>Nombre</th><th class="ocultar">Llegó</th><th class="ocultar">Meses</th><th class="ocultar">Peso</th><th>Estado</th><th></th></tr></thead>
@@ -71,6 +84,32 @@ CM.listo(() => {
       <td><span class="estado e-${b.estado}">${CM.ESTADOS[b.estado]}</span></td>
       <td class="acciones"><a class="btn sec" href="ficha.html?id=${encodeURIComponent(b.id)}">Ficha</a><button class="btn" data-qr="${CM.esc(b.id)}">QR</button></td>
     </tr>`).join("");
+
+
+  // Agenda: próximos 12 meses
+  const DIA = 864e5, addM = (f, m) => { const d = new Date(f + "T12:00:00"); d.setMonth(d.getMonth() + m); return d; };
+  const hoyD = CM.hoy(), fin = new Date(hoyD.getTime() + 365 * DIA), tareas = [];
+  lista.forEach(b => {
+    if (b.estado === "vendido") return;
+    const engorde = (b.eventos.find(e => e.tipo === "alimentacion") || {}).fecha;
+    const iniEng = engorde ? new Date(engorde + "T12:00:00") : addM(b.entrada, 48);
+    if (b.estado === "ceba") tareas.push({ d: iniEng, t: "engorde", txt: `${b.nombre} (${b.id}) empieza el engorde final` });
+    const sac = b.sacrificio ? new Date(b.sacrificio + "T12:00:00") : new Date(iniEng.getTime() + 365 * DIA);
+    if (b.estado === "ceba" || b.estado === "acabado") tareas.push({ d: sac, t: "sacrificio", txt: `Sacrificio de ${b.nombre} (${b.id}). Reservar matadero` });
+    const ent = (b.eventos.find(e => e.tipo === "maduracion") || {}).fecha;
+    const finCam = new Date((ent ? new Date(ent + "T12:00:00") : new Date(sac.getTime() + 2 * DIA)).getTime() + (b.diasMaduracion || 60) * DIA);
+    tareas.push({ d: finCam, t: "camara", txt: `${b.nombre} sale de cámara: despiece, etiquetas y entregas` });
+  });
+  for (let y = hoyD.getFullYear(); y <= fin.getFullYear(); y++) {
+    tareas.push({ d: new Date(y, 3, 15), t: "fija", txt: "Saneamiento ganadero anual" });
+    tareas.push({ d: new Date(y, 4, 10), t: "fija", txt: "Subida a los pastos de verano" });
+    tareas.push({ d: new Date(y, 9, 25), t: "fija", txt: "Bajada a la finca de invierno" });
+  }
+  const prox = tareas.filter(x => x.d >= hoyD && x.d <= fin).sort((a, b) => a.d - b.d);
+  const meses = {};
+  prox.forEach(x => { let k = x.d.toLocaleDateString("es-ES", { month: "long", year: "numeric" }); k = k[0].toUpperCase() + k.slice(1); (meses[k] = meses[k] || []).push(x); });
+  document.getElementById("agenda").innerHTML = Object.entries(meses).map(([m, xs]) =>
+    `<div class="mes"><h3>${m}</h3><ul>${xs.map(x => `<li><i class="t-${x.t}"></i><span><strong>${x.d.getDate()}</strong> · ${CM.esc(x.txt)}</span></li>`).join("")}</ul></div>`).join("") || `<p class="sub">Nada previsto en los próximos 12 meses.</p>`;
 
   const modal = document.getElementById("modal");
   document.addEventListener("click", e => {
